@@ -1,3 +1,6 @@
+[![CircleCI](https://circleci.com/gh/Phunmbi/shopmate.svg?style=svg)](https://circleci.com/gh/Phunmbi/shopmate)
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

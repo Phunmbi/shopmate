@@ -1,4 +1,7 @@
-[![CircleCI](https://circleci.com/gh/Phunmbi/shopmate.svg?style=svg)](https://circleci.com/gh/Phunmbi/shopmate)
+[![CircleCI](https://circleci.com/gh/Phunmbi/shopmate/tree/master.svg?style=svg&circle-token=350f38c6f5332b280414c828bef785e9f2b77359)](https://circleci.com/gh/Phunmbi/shopmate/tree/master)
+
+
+
 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

@@ -1,17 +1,19 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
+import { BrowserRouter } from 'react-router-dom';
+import Routes from '../../routes';
 import './App.scss';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <p className="Text-Style">
-            Text style 2, Shopmate
-          </p>
-        </header>
-      </div>
-    );
+			<Fragment>
+				<div className="App">
+					<BrowserRouter>
+						<Routes />
+					</BrowserRouter>
+				</div>
+			</Fragment>
+		);
   }
 }
 

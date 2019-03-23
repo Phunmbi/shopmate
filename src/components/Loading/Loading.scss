@@ -1,0 +1,19 @@
+.loading{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loading-full{
+  // display: flex;
+  // justify-content: center;
+  // width: 700px;
+  height: 697px;
+}
+
+.loading-small{
+  img {
+    height: 24px;
+    width: 24px;
+  }
+}

@@ -1,0 +1,82 @@
+.navbar-profile{
+  display: flex;
+  height: 72px;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background-color: #2e2e2e;
+  color: white;
+
+  .navbar-profile__main{
+    width: 1000px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .navbar-profile__brand{
+      font-size: 24px;
+      font-weight: bold;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: normal;
+      letter-spacing: 4px;
+      color: var(--red-pink);
+    }
+
+    .navbar-profile__categories{
+      display: flex;
+      width: 400px;
+      justify-content: space-evenly;
+    }
+
+    .navbar-profile__search{
+      display: flex;
+      align-items: center;
+      img{
+        position: relative;
+        right: -40px;
+        width: 15px;
+        height: 15px;
+      }
+      input[type="search" i] {
+        border: rgba(255, 255, 255, 0.5);
+        width: 260px;
+        height: 36px;
+        border-radius: 18px;
+        background-color: rgba(255, 255, 255, 0.5);
+      }
+      ::placeholder{
+        position: relative;
+        right: -55px;
+        color: white;
+        font-size: 14px;
+        font-weight: bold;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: 1.71;
+        letter-spacing: normal;
+      }
+
+      p{
+        color: white;
+        position: relative;
+        right: 40px;
+        top: -1px;
+        font-weight: bold;
+      }
+    }
+
+    .navbar-profile__user{
+      :focus{
+        border: none;
+      }
+      img{
+        background-color: white;
+        border: white;
+        border-radius: 50%;
+        width: 28px;
+        height: 28px;
+      }
+    }
+  }
+}

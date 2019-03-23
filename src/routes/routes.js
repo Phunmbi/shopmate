@@ -3,7 +3,7 @@ import Catalogue from '../views/Catalogue';
 
 const routes = {
   '/checkout': [Checkout],
-  '/catalogue': [Catalogue],
+  '/catalogue': [ Catalogue ],
 };
 
 export default routes;

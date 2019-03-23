@@ -11,6 +11,16 @@
   --white-two: #ffffff;
   --greyish: #b4b4b4;
 }
+
+/* Links*/
+a {
+  text-decoration: none;
+  color: black;
+}
+
+/* Fonts*/
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700|Open+Sans|Playfair+Display');
+
 /* Text styles */
 .Text-Style {
   font-family: PlayfairDisplay;

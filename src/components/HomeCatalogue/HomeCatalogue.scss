@@ -1,0 +1,10 @@
+.home-catalogue{
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  .home-catalogue__main{
+    width: 1000px;
+    display: flex;
+    justify-content: space-between;
+  }
+}

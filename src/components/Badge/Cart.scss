@@ -1,0 +1,16 @@
+.cart-main{
+  display: flex;
+  .cart-main__count {
+    position: relative;
+    top: -10px;
+    left: -12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 24px;
+    height: 24px;
+    background-color: var(--red-pink);
+    color: white;
+    border-radius: 50%;
+  }
+}

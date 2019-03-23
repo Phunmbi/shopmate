@@ -1,0 +1,50 @@
+.brand-ad{
+  width: 100%;
+  justify-content: center;
+  display: flex;
+  padding: 24px 0;
+  .brand-ad__main{
+    background-image: url('../../images/converse-banner.jpg');
+    background-size: cover;
+    width: 1000px;
+    height: 312px;
+    h3{
+      padding-left: 70px;
+      font-family: PlayfairDisplay;
+      font-size: 48px;
+      font-weight: bold;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: 1.5;
+      letter-spacing: 2px;
+      color: var(--white-two);
+    }
+    p{
+      padding-left: 70px;
+      opacity: 0.9;
+      font-size: 24px;
+      font-weight: bold;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: 1.5;
+      letter-spacing: 1px;
+      color: var(--white-two);
+    }
+    button{
+      cursor: pointer;
+      margin-left: 70px;
+      width: 163px;
+      height: 48px;
+      border-radius: 24px;
+      background-color: var(--white-two);
+      font-size: 16px;
+      font-weight: bold;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: 1.5;
+      letter-spacing: normal;
+      text-align: center;
+      color: var(--red-pink);
+    }
+  }
+}

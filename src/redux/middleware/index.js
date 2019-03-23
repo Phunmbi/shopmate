@@ -1,8 +1,11 @@
-import { all } from 'redux-saga/effects';
+import {all} from 'redux-saga/effects';
+import { watchGetProducts } from './productsSaga';
 
 
 function* rootSaga () {
-  yield all([])
+  yield all( [
+    watchGetProducts()
+  ])
 }
 
 export default rootSaga;

@@ -1,0 +1,18 @@
+.homepage{
+  .navbar, .catalogue-section, .subscription-section, .footer{
+    width: 1440px;
+    margin: 0 auto;
+  }
+
+  .catalogue-section{
+    background-color: var(--white);
+  }
+
+  .subscription-section{
+    background-color:#efefef;
+  }
+
+  .footer{
+    background-color: #2e2e2e;
+  }
+}

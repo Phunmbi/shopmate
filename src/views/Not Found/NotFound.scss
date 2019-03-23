@@ -1,0 +1,18 @@
+.not-found{
+  height: 100vh;
+  margin: 0;
+  background-image: url('../../images/404Error.jpg');
+  background-size: cover;
+  p{
+    color: #a1a1a1;
+    font-size: 25px;
+    font-weight: 400;
+    margin: 0;
+    position: absolute;
+    bottom: 10px;
+    left: 560px;
+    a{
+      color: blue;
+    }
+  }
+}

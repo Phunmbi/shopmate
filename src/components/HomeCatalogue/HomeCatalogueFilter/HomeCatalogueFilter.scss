@@ -13,7 +13,7 @@
       align-content: space-around;
       align-items: center;
       width: 230px;
-      height: 121px;
+      height: 60px;
       box-shadow: 0 -1px 0 0 rgba(0, 0, 0, 0.1);
       background-color: #fafafa;
       h2{
@@ -34,6 +34,7 @@
           font-size: 12px;
           font-weight: bold;
           margin: 0;
+          cursor: pointer;
         }
         h2{
           font-size: 12px;
@@ -58,7 +59,6 @@
       }
     }
     .filter-main__selection{
-      padding-top: 33px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -97,18 +97,10 @@
         }
       }
 
-      .filter-main__department{
-        .filter-main__form__wrapper{
-          .filter-main__form{
-            height: 180px;
-          }
-        }
-      }
-
       .filter-main__category{
         .filter-main__form__wrapper{
           .filter-main__form{
-            height: 180px;
+            height: 382px;
           }
         }
       }

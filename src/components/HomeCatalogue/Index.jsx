@@ -6,12 +6,27 @@ import './HomeCatalogue.scss';
 
 export class HomeCatalogue extends Component {
 	render () {
-		const {allProducts} = this.props;
+		const {
+			allProducts,
+			filterResults,
+			productCount,
+			fetchProducts,
+			resetFilter,
+			filterAllCategories,
+			filterAllDepartments,
+		} = this.props;
     return (
 			<Fragment>
 				<div className="home-catalogue">
 					<div className="home-catalogue__main">
-						<Filter />
+						<Filter
+							filterAllCategories={filterAllCategories}
+							filterAllDepartments={filterAllDepartments}
+							filterResults={filterResults}
+							productCount={productCount}
+							fetchProducts={fetchProducts}
+							resetFilter={resetFilter}
+						/>
 						<Catalogue allProducts={allProducts} />
 					</div>
 				</div>

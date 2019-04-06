@@ -10,57 +10,199 @@ import Pagination from '../../components/HomeCatalogue/Pagination/index';
 import Loading from '../../components/Loading/index';
 import Subscription from '../../components/Subscription';
 import Footer from '../../components/Footer/index';
+import SignUp from '../SignUp/index';
+import SignIn from '../SignIn/index';
 import './Homepage.scss'
-import {getProducts} from '../../redux/actionCreator/products'
+import {getProducts, filterAllDepartments, filterAllCategories} from '../../redux/actionCreator/products'
+import {signUp, signIn} from '../../redux/actionCreator/auth';
 
 export class Homepage extends Component {
 	state = {
 		page: 1,
+		displayModal: false,
+		openModal: "none",
+		filtering: false,
 	}
 
 	componentDidMount () {
-		this.fetchProducts();
-		console.log( this.props );
+		const filtering = localStorage.getItem( "filtering" );
+		const isACategorySelected = localStorage.getItem( "isACategorySelected" );
+		const selectedCategory = localStorage.getItem( "selectedCategoryID" );
+		const selectedDepartment = localStorage.getItem( 'selectedDepartmentID' );
+		if ( filtering ) {
+			isACategorySelected
+				? this.filterAllCategories(selectedCategory)
+				: this.filterAllDepartments(selectedDepartment);
+		} else {
+			this.fetchProducts();
+		}
 	}
 
-	fetchProducts () {
+	signupUser = (query) => {
+		const {signUp} = this.props;
+		signUp(query, this.handleCloseModal);
+	}
+
+	signInUser = ( query ) => {
+		const {signIn} = this.props;
+		signIn(query, this.handleCloseModal);
+	}
+
+	fetchProducts = () => {
 		const { page } = this.state;
 		const { getProducts } = this.props;
 		getProducts(page, 6);
 	}
 
-	handlePagination = async ( pageNumber ) => {
-		const {getProducts} = this.props;
+	filterAllDepartments = ( deptId ) => {
+		const {page} = this.state;
+		const {filterAllDepartments} = this.props;
+
+		this.setState( {
+			...this.state,
+			page: 1,
+			filtering: true,
+		} );
+
+		localStorage.setItem( "filtering", true );
+		filterAllDepartments( deptId, { page, limit:6} );
+	}
+
+	filterAllCategories = ( categoryID ) => {
+		const {page} = this.state;
+		const {filterAllCategories } = this.props;
+
+		this.setState({
+			...this.state,
+			page: 1,
+			filtering: true,
+		});
+
+		localStorage.setItem( "filtering", true );
+		filterAllCategories(categoryID, { page, limit: 6 });
+	}
+
+	resetFilter = () => {
+		this.fetchProducts();
+		localStorage.removeItem( "selectedDepartment" );
+		localStorage.removeItem( 'selectedDepartmentID' );
+		localStorage.removeItem( 'filtering' );
+		localStorage.removeItem('selectedCategory');
+		localStorage.removeItem('selectedCategoryID');
+		localStorage.removeItem('isACategorySelected');
+
+		this.setState( {
+			...this.state,
+			page:1
+		})
+	}
+
+	handlePagination = ( pageNumber ) => {
+		const {getProducts, filterAllDepartments} = this.props;
 
 		this.setState( {
 			page: pageNumber
 		} )
 
-		await getProducts(pageNumber, 6);
+		const filtering = localStorage.getItem( "filtering" );
+		const selectedDepartment = localStorage.getItem( "selectedDepartmentID" );
+
+		if ( filtering ) {
+			filterAllDepartments( selectedDepartment, { page:pageNumber, limit: 6 } );
+		} else {
+			getProducts( pageNumber, 6 )
+		}
+	}
+
+	handleDisplayModal = (modal) => {
+		this.setState({
+			displayModal: true,
+			openModal: modal
+		});
+	}
+
+	handleCloseModal = () => {
+		this.setState( {
+			displayModal: false,
+		})
+	}
+
+	renderModals ( displayModal, openModal ) {
+		const {authLoading} = this.props;
+		switch (openModal) {
+			case "signup":
+				return (
+					<SignUp
+						displayModal={displayModal}
+						handleCloseModal={this.handleCloseModal}
+						signupUser={this.signupUser}
+						authLoading={authLoading}
+					/>
+				);
+			case "signin":
+				return (
+					<SignIn
+						displayModal={displayModal}
+						handleCloseModal={this.handleCloseModal}
+						signInUser={this.signInUser}
+						authLoading={authLoading}
+					/>
+				);
+			default:
+				return null;
+		}
+	}
+
+	renderCatalogue () {
+		const {allProducts, productsLoading, productsResponse, productsCount} = this.props;
+		return productsLoading ? (
+			<Loading size="full" />
+		) : (
+			<HomeCatalogue
+				filterResults={productsResponse}
+				allProducts={allProducts}
+				productCount={productsCount}
+				filterAllCategories={this.filterAllCategories}
+				filterAllDepartments={this.filterAllDepartments}
+				fetchProducts={this.fetchProducts}
+				resetFilter={this.resetFilter}
+			/>
+		);
+	}
+
+	renderPagination () {
+		const {productsCount, productsLoading} = this.props;
+		const {page} = this.state;
+
+		return (
+			productsLoading  ? (
+				<Loading  size="small" />
+			) : (
+				<Pagination
+					currentPage={page}
+					productsCount={productsCount}
+					handlePagination={this.handlePagination}
+				/>
+			)
+		)
 	}
 
 	render () {
-		const {allProducts, productsCount, productsLoading} = this.props;
-		const {page} = this.state;
+		const {
+			displayModal,
+			openModal
+		} = this.state;
     return (
 			<Fragment>
 				<div className="homepage">
 					<header className="navbar">
-						<NavbarHome />
+						<NavbarHome handleDisplayModal={this.handleDisplayModal} authAccess={this.authAccess} />
 						<NavbarProfile />
 					</header>
 					<div className="catalogue-section">
 						<Hero />
-						{productsLoading  ? <Loading size="full" /> : <HomeCatalogue allProducts={allProducts} />}
-						{productsLoading  ? (
-							<Loading  size="small" />
-						) : (
-							<Pagination
-								currentPage={page}
-								productsCount={productsCount}
-								handlePagination={this.handlePagination}
-							/>
-						)}
+						{this.renderCatalogue()}
+						{this.renderPagination()}
 						<BrandAd />
 					</div>
 					<div className="subscription-section">
@@ -70,6 +212,8 @@ export class Homepage extends Component {
 						<Footer />
 					</footer>
 				</div>
+
+				{this.renderModals(displayModal, openModal)}
 			</Fragment>
 		);
   }
@@ -79,7 +223,11 @@ Homepage.propTypes = {
 	getProducts: PropTypes.func,
 	allProducts: PropTypes.array,
 	productsLoading: PropTypes.bool,
-	productsCount: PropTypes.number,
+	productsCount: PropTypes.oneOfType( [
+		PropTypes.number,
+		PropTypes.object,
+	] ),
+	productsResponse: PropTypes.object,
 };
 
 Homepage.defaultProps = {
@@ -87,16 +235,23 @@ Homepage.defaultProps = {
 	allProducts: [],
 	productsCount: null,
 	productsLoading: false,
+	productsResponse: null,
 };
 
-const mapStateToProps = ( {products} ) => ( {
+const mapStateToProps = ({ products,auth }) => ({
 	allProducts: products.products,
 	productsCount: products.count,
-	productsLoading: products.loading
-} );
+	productsLoading: products.loading,
+	authLoading: auth.loading,
+	productsResponse: products,
+});
 
 const mapDispatchToProps = {
-	getProducts
+	getProducts,
+	signUp,
+	signIn,
+	filterAllDepartments,
+	filterAllCategories
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Homepage);

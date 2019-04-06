@@ -1,6 +1,11 @@
 import {call, put, takeLatest} from 'redux-saga/effects';
 import toast from 'toastr';
-import {GET_ALL_PRODUCTS, FILTER_ALL_DEPARTMENTS, FILTER_ALL_CATEGORIES} from '../constants/actionTypes'
+import {
+	GET_ALL_PRODUCTS,
+	FILTER_ALL_DEPARTMENTS,
+	FILTER_ALL_CATEGORIES,
+	SEARCH_ALL_PRODUCTS
+} from '../constants/actionTypes'
 import ProductsAPI from '../../services/products';
 import {
 	getProductsSuccess,
@@ -9,6 +14,8 @@ import {
 	filterAllDepartmentsSuccess,
 	filterAllCategoriesFailure,
 	filterAllCategoriesSuccess,
+	searchAllProductsFailure,
+	searchAllProductsSuccess,
 } from '../actionCreator/products';
 
 export function* getProductsSaga(action) {
@@ -55,4 +62,20 @@ export function* filterAllCategoriesSaga ( action ) {
 
 export function* watchFilterAllCategories () {
 	yield takeLatest( FILTER_ALL_CATEGORIES, filterAllCategoriesSaga );
+}
+
+export function* searchAllProductsSaga ( action ) {
+	try {
+		const {queryString, pageDetails} = action;
+		const response = yield call( ProductsAPI.searchAllProducts, {queryString, pageDetails} );
+		toast.success( `Successfully searched for products matching ${queryString}` );
+		yield put( searchAllProductsSuccess( response.data ) );
+	} catch ( error ) {
+		toast.error( 'Failed to complete search' );
+		yield put( searchAllProductsFailure( error ) );
+	}
+}
+
+export function* watchSearchAllProducts () {
+	yield takeLatest( SEARCH_ALL_PRODUCTS, searchAllProductsSaga );
 }

@@ -34,7 +34,7 @@
       align-items: center;
       img{
         position: relative;
-        right: -40px;
+        right: -35px;
         width: 15px;
         height: 15px;
       }
@@ -42,12 +42,20 @@
         border: rgba(255, 255, 255, 0.5);
         width: 260px;
         height: 36px;
+        color: white;
         border-radius: 18px;
+        outline:none;
+        font-size: 14px;
+        font-weight: bold;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: 1.71;
+        letter-spacing: normal;
+        text-indent: 46px;
         background-color: rgba(255, 255, 255, 0.5);
       }
       ::placeholder{
         position: relative;
-        right: -55px;
         color: white;
         font-size: 14px;
         font-weight: bold;
@@ -60,9 +68,10 @@
       p{
         color: white;
         position: relative;
-        right: 40px;
+        right: 35px;
         top: -1px;
         font-weight: bold;
+        cursor: pointer;
       }
     }
 

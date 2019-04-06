@@ -4,8 +4,27 @@ import Search from '../../../images/search.svg';
 import './NavbarProfile.scss';
 
 export default class index extends Component {
-  render() {
-    return (
+	state = {
+		searchValue: ""
+	};
+
+	handleSearchChange =  (event) => {
+		this.setState({
+			searchValue: event.target.value,
+		})
+	};
+
+	handleResetSearch = () => {
+		this.setState({
+			searchValue: "",
+		});
+		const { resetSearch } = this.props;
+		resetSearch();
+	};
+
+	render() {
+        const { handleSearch } = this.props;
+  		return (
 			<Fragment>
 				<div className="navbar-profile">
 					<div className="navbar-profile__main">
@@ -19,8 +38,10 @@ export default class index extends Component {
 						</div>
 						<div className="navbar-profile__search">
 							<img src={Search} alt="search" />
-							<input type="search" placeholder="search anything" />
-							<p>x</p>
+							<form onSubmit={event => handleSearch(event, this.state.searchValue)}>
+								<input onChange={this.handleSearchChange} value={this.state.searchValue} type="search" placeholder="search anything" />
+							</form>
+							<p onClick={() => this.handleResetSearch()}>x</p>
 						</div>
 						<div className="navbar-profile__user">
 							<img src={UserProfile} alt="Profile" />
@@ -29,5 +50,5 @@ export default class index extends Component {
 				</div>
 			</Fragment>
 		);
-  }
+  	}
 }

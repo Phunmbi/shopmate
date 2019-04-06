@@ -13,7 +13,12 @@ import Footer from '../../components/Footer/index';
 import SignUp from '../SignUp/index';
 import SignIn from '../SignIn/index';
 import './Homepage.scss'
-import {getProducts, filterAllDepartments, filterAllCategories} from '../../redux/actionCreator/products'
+import {
+	getProducts,
+	filterAllDepartments,
+	filterAllCategories,
+	searchAllProducts,
+} from '../../redux/actionCreator/products';
 import {signUp, signIn} from '../../redux/actionCreator/auth';
 
 export class Homepage extends Component {
@@ -22,7 +27,7 @@ export class Homepage extends Component {
 		displayModal: false,
 		openModal: "none",
 		filtering: false,
-	}
+	};
 
 	componentDidMount () {
 		const filtering = localStorage.getItem( "filtering" );
@@ -41,18 +46,18 @@ export class Homepage extends Component {
 	signupUser = (query) => {
 		const {signUp} = this.props;
 		signUp(query, this.handleCloseModal);
-	}
+	};
 
 	signInUser = ( query ) => {
 		const {signIn} = this.props;
 		signIn(query, this.handleCloseModal);
-	}
+	};
 
 	fetchProducts = () => {
 		const { page } = this.state;
 		const { getProducts } = this.props;
 		getProducts(page, 6);
-	}
+	};
 
 	filterAllDepartments = ( deptId ) => {
 		const {page} = this.state;
@@ -66,7 +71,7 @@ export class Homepage extends Component {
 
 		localStorage.setItem( "filtering", true );
 		filterAllDepartments( deptId, { page, limit:6} );
-	}
+	};
 
 	filterAllCategories = ( categoryID ) => {
 		const {page} = this.state;
@@ -80,7 +85,7 @@ export class Homepage extends Component {
 
 		localStorage.setItem( "filtering", true );
 		filterAllCategories(categoryID, { page, limit: 6 });
-	}
+	};
 
 	resetFilter = () => {
 		this.fetchProducts();
@@ -95,14 +100,14 @@ export class Homepage extends Component {
 			...this.state,
 			page:1
 		})
-	}
+	};
 
 	handlePagination = ( pageNumber ) => {
 		const {getProducts, filterAllDepartments} = this.props;
 
 		this.setState( {
 			page: pageNumber
-		} )
+		} );
 
 		const filtering = localStorage.getItem( "filtering" );
 		const selectedDepartment = localStorage.getItem( "selectedDepartmentID" );
@@ -112,20 +117,30 @@ export class Homepage extends Component {
 		} else {
 			getProducts( pageNumber, 6 )
 		}
-	}
+	};
 
 	handleDisplayModal = (modal) => {
 		this.setState({
 			displayModal: true,
 			openModal: modal
 		});
-	}
+	};
 
 	handleCloseModal = () => {
 		this.setState( {
 			displayModal: false,
 		})
-	}
+	};
+
+	handleSearch = (event, queryString) => {
+		event.preventDefault();
+		const { searchAllProducts } = this.props;
+		searchAllProducts(queryString, {page: 1, limit: 6});
+	};
+
+	resetSearch = () => {
+		this.fetchProducts();
+	};
 
 	renderModals ( displayModal, openModal ) {
 		const {authLoading} = this.props;
@@ -192,12 +207,12 @@ export class Homepage extends Component {
 			displayModal,
 			openModal
 		} = this.state;
-    return (
+    	return (
 			<Fragment>
 				<div className="homepage">
 					<header className="navbar">
 						<NavbarHome handleDisplayModal={this.handleDisplayModal} authAccess={this.authAccess} />
-						<NavbarProfile />
+						<NavbarProfile handleSearch={this.handleSearch} resetSearch={this.resetSearch}/>
 					</header>
 					<div className="catalogue-section">
 						<Hero />
@@ -251,7 +266,8 @@ const mapDispatchToProps = {
 	signUp,
 	signIn,
 	filterAllDepartments,
-	filterAllCategories
+	filterAllCategories,
+	searchAllProducts,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Homepage);

@@ -7,7 +7,10 @@ import {
 	FILTER_ALL_DEPARTMENTS_FAILURE,
 	FILTER_ALL_CATEGORIES,
 	FILTER_ALL_CATEGORIES_FAILURE,
-	FILTER_ALL_CATEGORIES_SUCCESS
+	FILTER_ALL_CATEGORIES_SUCCESS,
+	SEARCH_ALL_PRODUCTS,
+	SEARCH_ALL_PRODUCTS_SUCCESS,
+	SEARCH_ALL_PRODUCTS_FAILURE
 } from '../constants/actionTypes';
 
 export const getProducts = ( page, limit ) => {
@@ -72,6 +75,28 @@ export const filterAllCategoriesSuccess = data => {
 export const filterAllCategoriesFailure = error => {
 	return {
 		type: FILTER_ALL_CATEGORIES_FAILURE,
+		payload: error,
+	};
+};
+
+export const searchAllProducts = ( queryString, pageDetails ) => {
+	return {
+		type: SEARCH_ALL_PRODUCTS,
+		queryString,
+		pageDetails,
+	};
+};
+
+export const searchAllProductsSuccess = data => {
+	return {
+		type: SEARCH_ALL_PRODUCTS_SUCCESS,
+		payload: data,
+	};
+};
+
+export const searchAllProductsFailure = error => {
+	return {
+		type: SEARCH_ALL_PRODUCTS_FAILURE,
 		payload: error,
 	};
 };

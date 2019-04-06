@@ -33,6 +33,7 @@ const auth = ( state = initialState, action ) => {
 			};
 		case types.FILTER_ALL_DEPARTMENTS:
 		case types.FILTER_ALL_CATEGORIES:
+		case types.SEARCH_ALL_PRODUCTS:
 			return {
 				...state,
 				loading: true,
@@ -48,6 +49,7 @@ const auth = ( state = initialState, action ) => {
 				error: '',
 			};
 		case types.FILTER_ALL_CATEGORIES_SUCCESS:
+        case types.SEARCH_ALL_PRODUCTS_SUCCESS:
 			return {
 				...state,
 				loading: false,
@@ -57,6 +59,7 @@ const auth = ( state = initialState, action ) => {
 			};
 		case types.FILTER_ALL_DEPARTMENTS_FAILURE:
 		case types.FILTER_ALL_CATEGORIES_FAILURE:
+		case types.SEARCH_ALL_PRODUCTS_FAILURE:
 			return {
 				...state,
 				count: null,

@@ -18,4 +18,11 @@ export default class HomeAPI {
 			`${baseURL}/products/inCategory/${CategoryId}?page=${query.page}&limit=${query.limit}`
 		);
 	}
+
+	static searchAllProducts (action) {
+		const {queryString, pageDetails} = action;
+		return axios.get(
+			`${baseURL}/products/search?query_string=${queryString}&page=${pageDetails.page}&limit=${pageDetails.limit}`
+		);
+	}
 }

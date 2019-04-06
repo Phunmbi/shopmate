@@ -3,17 +3,19 @@ import {
 	watchGetProducts,
 	watchFilterAllDepartments,
 	watchFilterAllCategories,
+    watchSearchAllProducts
 } from './productsSaga';
 import {watchSignUp, watchSignIn} from './authSaga';
 
 
 function* rootSaga () {
   yield all( [
-    watchGetProducts(),
-    watchSignUp(),
-    watchSignIn(),
-    watchFilterAllDepartments(),
-    watchFilterAllCategories(),
+      watchGetProducts(),
+      watchSignUp(),
+      watchSignIn(),
+      watchFilterAllDepartments(),
+      watchFilterAllCategories(),
+      watchSearchAllProducts()
   ])
 }
 

@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import Routes from '../../routes';
 import store from '../../redux/store';
 import './App.scss';
+import '../../customStyles/toast.scss';
 
 class App extends Component {
   render() {

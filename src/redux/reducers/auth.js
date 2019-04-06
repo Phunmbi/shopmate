@@ -10,23 +10,28 @@ const initialState = {
 const auth = (state = initialState, action) => {
 	switch (action.type) {
 		case types.SIGN_UP:
+		case types.SIGN_IN:
 			return {
         ...state,
         loading: true,
 				error: false,
 			};
 		case types.SIGN_UP_SUCCESS:
+		case types.SIGN_IN_SUCCESS:
 			return {
         ...state,
         loading: false,
-        user: {...action},
+				user: {...action.payload.customer},
+				isAuthenticated: true,
 				error: false,
 			};
 		case types.SIGN_UP_FAILURE:
+		case types.SIGN_IN_FAILURE:
 			return {
-        ...state,
-        loading: false,
+				...state,
+				loading: false,
 				error: true,
+				isAuthenticated: false,
 			};
 		default:
 			return state;

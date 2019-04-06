@@ -10,32 +10,6 @@ export class Pagination extends Component {
     return Math.ceil(productsCount / 6);
   }
 
-  renderPagination () {
-    const {currentPage} = this.props;
-    let range = [];
-    switch (currentPage) {
-			case 1:
-				range = [currentPage, currentPage + 1, currentPage + 2, '...', this.lastPage()];
-				return range;
-			case this.lastPage():
-				range = [1, '...', currentPage - 2, currentPage - 1, currentPage];
-				return range;
-      case this.lastPage() - 1:
-        range = [1, '...', currentPage - 2, currentPage - 1, currentPage, this.lastPage()];
-				return range;
-      case this.lastPage() - 2:
-				range = [1, '...', currentPage - 1, currentPage, currentPage + 1, this.lastPage()];
-				return range;
-			default:
-				range = [currentPage - 1, currentPage, currentPage + 1, '...', this.lastPage()];
-				return range;
-		}
-  }
-
-  paginationClassName (currentPage, page) {
-    return currentPage === page ? 'pagination-main__reference' : 'pagination-main__ref';
-  }
-
   renderBackButton (currentPage, handlePagination) {
     return (
 			<div
@@ -66,20 +40,12 @@ export class Pagination extends Component {
 		);
   }
 
-  renderPaginationNumbers (currentPage, handlePagination) {
+  renderPaginationNumbers (currentPage) {
     return (
 			<div className="pagination-main__page">
-				{this.renderPagination().map(page => {
-					return (
-						<div
-							onClick={page === '...' ? null : () => handlePagination(page)}
-							key={page}
-							className={this.paginationClassName(currentPage, page)}
-						>
-							<p>{page}</p>
-						</div>
-					);
-				})}
+				<p className="pagination-main__reference">{currentPage}</p>
+				<p>of</p>
+				<p>{this.lastPage()}</p>
 			</div>
 		);
   }
@@ -102,7 +68,10 @@ export class Pagination extends Component {
 
 Pagination.propTypes = {
 	currentPage: PropTypes.number,
-	productsCount: PropTypes.number,
+	productsCount: PropTypes.oneOfType( [
+		PropTypes.number,
+		PropTypes.object,
+	] ),
 	handlePagination: PropTypes.func
 };
 

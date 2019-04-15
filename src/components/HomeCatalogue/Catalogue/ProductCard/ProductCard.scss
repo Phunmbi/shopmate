@@ -9,6 +9,10 @@
   height: 336px;
   box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2);
   background-color: var(--white-two);
+  &:hover{
+    box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+  }
   h3, p{
     margin: 0;
   }
@@ -43,5 +47,6 @@
     letter-spacing: normal;
     text-align: center;
     color: var(--white-two);
+    outline: none;
   }
 }

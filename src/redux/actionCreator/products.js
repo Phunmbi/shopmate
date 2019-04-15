@@ -1,16 +1,22 @@
 import {
-	GET_ALL_PRODUCTS,
-	GET_ALL_PRODUCTS_FAILURE,
-	GET_ALL_PRODUCTS_SUCCESS,
-	FILTER_ALL_DEPARTMENTS,
-	FILTER_ALL_DEPARTMENTS_SUCCESS,
-	FILTER_ALL_DEPARTMENTS_FAILURE,
-	FILTER_ALL_CATEGORIES,
-	FILTER_ALL_CATEGORIES_FAILURE,
-	FILTER_ALL_CATEGORIES_SUCCESS,
-	SEARCH_ALL_PRODUCTS,
-	SEARCH_ALL_PRODUCTS_SUCCESS,
-	SEARCH_ALL_PRODUCTS_FAILURE
+  GET_ALL_PRODUCTS,
+  GET_ALL_PRODUCTS_FAILURE,
+  GET_ALL_PRODUCTS_SUCCESS,
+  FILTER_ALL_DEPARTMENTS,
+  FILTER_ALL_DEPARTMENTS_SUCCESS,
+  FILTER_ALL_DEPARTMENTS_FAILURE,
+  FILTER_ALL_CATEGORIES,
+  FILTER_ALL_CATEGORIES_FAILURE,
+  FILTER_ALL_CATEGORIES_SUCCESS,
+  SEARCH_ALL_PRODUCTS,
+  SEARCH_ALL_PRODUCTS_SUCCESS,
+  SEARCH_ALL_PRODUCTS_FAILURE,
+  SINGLE_PRODUCT_DETAILS,
+  SINGLE_PRODUCT_DETAILS_SUCCESS,
+  SINGLE_PRODUCT_DETAILS_FAILURE,
+	SINGLE_PRODUCT_REVIEWS,
+	SINGLE_PRODUCT_REVIEWS_SUCCESS,
+	SINGLE_PRODUCT_REVIEWS_FAILURE
 } from '../constants/actionTypes';
 
 export const getProducts = ( page, limit ) => {
@@ -99,4 +105,46 @@ export const searchAllProductsFailure = error => {
 		type: SEARCH_ALL_PRODUCTS_FAILURE,
 		payload: error,
 	};
+};
+
+export const singleProductDetails = ( productId ) => {
+	return {
+		type: SINGLE_PRODUCT_DETAILS,
+		productId,
+	};
+};
+
+export const singleProductDetailsSuccess = data => {
+	return {
+		type: SINGLE_PRODUCT_DETAILS_SUCCESS,
+		payload: data,
+	};
+};
+
+export const singleProductDetailsFailure = error => {
+	return {
+		type: SINGLE_PRODUCT_DETAILS_FAILURE,
+		payload: error,
+	};
+};
+
+export const singleProductReviews = ( productId ) => {
+  return {
+    type: SINGLE_PRODUCT_REVIEWS,
+    productId,
+  };
+};
+
+export const singleProductReviewsSuccess = data => {
+  return {
+    type: SINGLE_PRODUCT_REVIEWS_SUCCESS,
+    payload: data,
+  };
+};
+
+export const singleProductReviewsFailure = error => {
+  return {
+    type: SINGLE_PRODUCT_REVIEWS_FAILURE,
+    payload: error,
+  };
 };

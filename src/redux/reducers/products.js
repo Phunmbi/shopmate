@@ -2,9 +2,13 @@ import * as types from '../constants/actionTypes';
 
 const initialState = {
 	products: [],
+	singleProductDetails: {},
 	count: null,
 	error: '',
 	loading: false,
+	reviews: [],
+	reviewsError: '',
+	reviewsLoading: false
 };
 
 const auth = ( state = initialState, action ) => {
@@ -66,6 +70,47 @@ const auth = ( state = initialState, action ) => {
 				loading: false,
 				error: action.payload,
 			};
+		case types.SINGLE_PRODUCT_DETAILS:
+			return {
+				...state,
+				loading: true,
+				error: '',
+			};
+		case types.SINGLE_PRODUCT_DETAILS_SUCCESS:
+			return {
+				...state,
+				loading: false,
+				singleProductDetails: {...action.payload},
+				error: '',
+			};
+		case types.SINGLE_PRODUCT_DETAILS_FAILURE:
+			return {
+				...state,
+				singleProductDetails: {},
+				loading: false,
+				error: action.payload,
+			};
+    case types.SINGLE_PRODUCT_REVIEWS:
+      return {
+        ...state,
+        reviewsLoading: true,
+        reviewsError: '',
+				reviews: []
+      };
+    case types.SINGLE_PRODUCT_REVIEWS_SUCCESS:
+      return {
+        ...state,
+        reviewsLoading: false,
+        reviews: [...action.payload],
+        reviewsError: '',
+      };
+    case types.SINGLE_PRODUCT_REVIEWS_FAILURE:
+      return {
+        ...state,
+        reviews: [],
+        reviewsLoading: false,
+        reviewsError: action.payload,
+      };
 		default:
 			return state;
 	}

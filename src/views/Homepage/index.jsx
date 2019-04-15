@@ -43,7 +43,7 @@ export class Homepage extends Component {
 		}
 	}
 
-	signupUser = (query) => {
+	signUpUser = (query) => {
 		const {signUp} = this.props;
 		signUp(query, this.handleCloseModal);
 	};
@@ -95,6 +95,7 @@ export class Homepage extends Component {
 		localStorage.removeItem('selectedCategory');
 		localStorage.removeItem('selectedCategoryID');
 		localStorage.removeItem('isACategorySelected');
+		localStorage.removeItem( "isADepartmentSelected" );
 
 		this.setState( {
 			...this.state,
@@ -150,7 +151,7 @@ export class Homepage extends Component {
 					<SignUp
 						displayModal={displayModal}
 						handleCloseModal={this.handleCloseModal}
-						signupUser={this.signupUser}
+						signupUser={this.signUpUser}
 						authLoading={authLoading}
 					/>
 				);
@@ -211,7 +212,7 @@ export class Homepage extends Component {
 			<Fragment>
 				<div className="homepage">
 					<header className="navbar">
-						<NavbarHome handleDisplayModal={this.handleDisplayModal} authAccess={this.authAccess} />
+						<NavbarHome handleDisplayModal={this.handleDisplayModal} />
 						<NavbarProfile handleSearch={this.handleSearch} resetSearch={this.resetSearch}/>
 					</header>
 					<div className="catalogue-section">

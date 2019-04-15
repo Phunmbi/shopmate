@@ -7,7 +7,8 @@ import ForwardArrow from '../../../images/forwardArrow.svg';
 export class Pagination extends Component {
   lastPage () {
     const {productsCount} = this.props;
-    return Math.ceil(productsCount / 6);
+    const result = Math.ceil(productsCount / 6);
+    return result === 0 ? 1 : result;
   }
 
   renderBackButton (currentPage, handlePagination) {

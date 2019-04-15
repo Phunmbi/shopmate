@@ -1,0 +1,50 @@
+.single-review__container{
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  .single-review__rating{
+    display: flex;
+    width: 115px;
+    justify-content: space-between;
+  }
+  .single-review__description{
+    display: flex;
+    width: 600px;
+    p{
+      font-family: 'Open Sans';
+      font-size: 16px;
+      font-weight: 300;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: 1.5;
+      letter-spacing: normal;
+      color: #2e2e2e;
+      margin: 0;
+    }
+  }
+}
+
+.single-review__details{
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 30px;
+  .single-review__reviewer{
+    h3{
+      font-size: 16px;
+      font-weight: bold;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: 1.5;
+      letter-spacing: normal;
+      color: #2e2e2e;
+      margin-bottom: 0;
+    }
+  }
+  .single-review__reviewedOn{
+    p{
+      margin: 0;
+      font-size: 11px;
+      color: #b4b4b4;
+    }
+  }
+}

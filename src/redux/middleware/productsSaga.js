@@ -4,7 +4,9 @@ import {
 	GET_ALL_PRODUCTS,
 	FILTER_ALL_DEPARTMENTS,
 	FILTER_ALL_CATEGORIES,
-	SEARCH_ALL_PRODUCTS
+	SEARCH_ALL_PRODUCTS,
+	SINGLE_PRODUCT_DETAILS,
+	SINGLE_PRODUCT_REVIEWS
 } from '../constants/actionTypes'
 import ProductsAPI from '../../services/products';
 import {
@@ -16,6 +18,10 @@ import {
 	filterAllCategoriesSuccess,
 	searchAllProductsFailure,
 	searchAllProductsSuccess,
+	singleProductDetailsFailure,
+	singleProductDetailsSuccess,
+	singleProductReviewsFailure,
+	singleProductReviewsSuccess
 } from '../actionCreator/products';
 
 export function* getProductsSaga(action) {
@@ -78,4 +84,34 @@ export function* searchAllProductsSaga ( action ) {
 
 export function* watchSearchAllProducts () {
 	yield takeLatest( SEARCH_ALL_PRODUCTS, searchAllProductsSaga );
+}
+
+export function* singleProductDetailsSaga ( action ) {
+    try {
+        const {productId} = action;
+        const response = yield call( ProductsAPI.singleProductDetails, {productId} );
+        yield put( singleProductDetailsSuccess( response.data ) );
+    } catch ( error ) {
+        toast.error( 'Failed to load details for product' );
+        yield put( singleProductDetailsFailure( error ) );
+    }
+}
+
+export function* watchSingleProductDetails () {
+    yield takeLatest( SINGLE_PRODUCT_DETAILS, singleProductDetailsSaga );
+}
+
+export function* singleProductReviewsSaga ( action ) {
+  try {
+    const {productId} = action;
+    const response = yield call( ProductsAPI.singleProductReviews, {productId} );
+    yield put( singleProductReviewsSuccess( response.data ) );
+  } catch ( error ) {
+    toast.error( 'Failed to load reviews for product' );
+    yield put( singleProductReviewsFailure( error ) );
+  }
+}
+
+export function* watchSingleProductReviews () {
+  yield takeLatest( SINGLE_PRODUCT_REVIEWS, singleProductReviewsSaga );
 }

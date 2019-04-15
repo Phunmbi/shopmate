@@ -25,4 +25,16 @@ export default class HomeAPI {
 			`${baseURL}/products/search?query_string=${queryString}&page=${pageDetails.page}&limit=${pageDetails.limit}`
 		);
 	}
+
+    static singleProductDetails (action) {
+			const {productId} = action;
+			return axios.get(
+					`${baseURL}/products/${productId}`
+			);
+    }
+
+    static singleProductReviews (action) {
+			const { productId } = action;
+			return axios.get(`${baseURL}/products/${productId}/reviews`);
+		}
 }

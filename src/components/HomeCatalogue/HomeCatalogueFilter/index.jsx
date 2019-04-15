@@ -47,9 +47,9 @@ export class HomeCatalogueFilter extends Component {
 				status: false
 			}
 		},
-	}
+	};
 
-	state = {...this.defaultState}
+	state = {...this.defaultState};
 
 	componentDidMount () {
 		const checkedStatus = localStorage.getItem( "filtering" );
@@ -83,7 +83,7 @@ export class HomeCatalogueFilter extends Component {
 		const {category} = this.defaultState;
 		localStorage.setItem('selectedCategory', value);
 		localStorage.setItem( "selectedCategoryID", this.state.category[value].id );
-		localStorage.setItem( "isACategorySelected", true );
+		localStorage.setItem( "isACategorySelected", "true" );
 		this.setState( {
 			category: {
 				...category,
@@ -100,8 +100,9 @@ export class HomeCatalogueFilter extends Component {
 			target: { value, checked },
 		} = event;
 		const {department} = this.defaultState;
-		localStorage.setItem( "selectedDepartmentID", this.state.department[value].id )
+		localStorage.setItem( "selectedDepartmentID", this.state.department[value].id );
 		localStorage.setItem( 'selectedDepartment', value );
+        localStorage.setItem( "isADepartmentSelected", "true" );
 		this.setState({
 			department: {
 				...department,
@@ -111,7 +112,7 @@ export class HomeCatalogueFilter extends Component {
 				},
 			},
 		});
-	}
+	};
 
 	renderCategories = ( departments ) => {
 		for (const key in departments) {
@@ -122,7 +123,7 @@ export class HomeCatalogueFilter extends Component {
 				}
 			}
 		}
-	}
+	};
 
 	switchCategories = ( categories ) => {
 		switch (categories) {
@@ -221,7 +222,7 @@ export class HomeCatalogueFilter extends Component {
 			default:
 				break;
 		}
-	}
+	};
 
 	runFilter = () => {
 		const {
@@ -229,10 +230,19 @@ export class HomeCatalogueFilter extends Component {
 			filterAllDepartments
 		} = this.props;
 		const categorySelected = localStorage.getItem( "isACategorySelected" );
-	 	categorySelected
-			? filterAllCategories(localStorage.getItem('selectedCategoryID'))
-			: filterAllDepartments(localStorage.getItem('selectedDepartmentID'));
-	}
+        const departmentSelected = localStorage.getItem( "isADepartmentSelected" );
+
+		switch (departmentSelected) {
+			case "true":
+                return(
+                    categorySelected ? filterAllCategories(localStorage.getItem('selectedCategoryID')) : filterAllDepartments(localStorage.getItem('selectedDepartmentID'))
+				);
+			case "false":
+				return null;
+			default:
+				return null;
+        }
+	};
 
 	render () {
 		const {department} = this.state;

@@ -1,4 +1,4 @@
-import React, {Component,Fragment} from 'react'
+import React, {Component,Fragment} from 'react';
 import {Link} from 'react-router-dom';
 import Cart from '../../Badge/Cart';
 import UKFlag from '../../../images/united-kingdom-icon.svg';

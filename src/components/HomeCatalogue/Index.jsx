@@ -2,6 +2,7 @@ import React, {Component, Fragment} from 'react';
 import PropTypes from 'prop-types';
 import Filter from './HomeCatalogueFilter/index';
 import Catalogue from './Catalogue/index';
+import ZeroCount from '../../components/ZeroCount';
 import './HomeCatalogue.scss';
 
 export class HomeCatalogue extends Component {
@@ -27,7 +28,7 @@ export class HomeCatalogue extends Component {
 							fetchProducts={fetchProducts}
 							resetFilter={resetFilter}
 						/>
-						<Catalogue allProducts={allProducts} />
+						{productCount > 0 ? <Catalogue allProducts={allProducts} />: <ZeroCount /> }
 					</div>
 				</div>
 			</Fragment>
@@ -41,6 +42,6 @@ HomeCatalogue.propTypes = {
 
 HomeCatalogue.defaultProps = {
 	allProducts: []
-}
+};
 
 export default HomeCatalogue;

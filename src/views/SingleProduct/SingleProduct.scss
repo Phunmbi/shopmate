@@ -1,0 +1,20 @@
+.product{
+  background-color: #EFEFEF;
+
+  header, .product-details, .product-reviews, .footer{
+    margin: 0 auto;
+    width: 1440px;
+  }
+
+  .product-details{
+    height: 625px;
+  }
+
+  .product-reviews{
+    min-height: 743px;
+  }
+
+  .footer{
+    background-color: #2e2e2e;
+  }
+}

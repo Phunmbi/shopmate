@@ -76,6 +76,7 @@
     }
 
     .navbar-profile__user{
+      cursor: pointer;
       :focus{
         border: none;
       }

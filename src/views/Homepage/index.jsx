@@ -1,5 +1,6 @@
 import React, {Component, Fragment} from 'react';
 import { connect } from 'react-redux';
+import toaster from 'toastr';
 import PropTypes from 'prop-types';
 import NavbarHome from '../../components/Navbar/NavbarHome/Index';
 import NavbarProfile from '../../components/Navbar/NavbarProfile/index';
@@ -19,7 +20,9 @@ import {
 	filterAllCategories,
 	searchAllProducts,
 } from '../../redux/actionCreator/products';
+import { getCartId, retrieveCart, removeFromCart } from "../../redux/actionCreator/shoppingCart";
 import {signUp, signIn} from '../../redux/actionCreator/auth';
+import CheckoutCart from "../CheckoutCart";
 
 export class Homepage extends Component {
 	state = {
@@ -30,10 +33,15 @@ export class Homepage extends Component {
 	};
 
 	componentDidMount () {
+		const { getCartId } = this.props;
 		const filtering = localStorage.getItem( "filtering" );
 		const isACategorySelected = localStorage.getItem( "isACategorySelected" );
 		const selectedCategory = localStorage.getItem( "selectedCategoryID" );
 		const selectedDepartment = localStorage.getItem( 'selectedDepartmentID' );
+		const cartId = localStorage.getItem("cart_id");
+		
+		!cartId && getCartId();
+		
 		if ( filtering ) {
 			isACategorySelected
 				? this.filterAllCategories(selectedCategory)
@@ -42,7 +50,7 @@ export class Homepage extends Component {
 			this.fetchProducts();
 		}
 	}
-
+	
 	signUpUser = (query) => {
 		const {signUp} = this.props;
 		signUp(query, this.handleCloseModal);
@@ -138,19 +146,52 @@ export class Homepage extends Component {
 		const { searchAllProducts } = this.props;
 		searchAllProducts(queryString, {page: 1, limit: 6});
 	};
-
+	
+	handleRetrieveCart = () => {
+		const { retrieveCart } = this.props;
+		const cart_id = localStorage.getItem("cart_id");
+		retrieveCart(cart_id);
+	};
+	
+	calculateBagTotal = () => {
+		const { cart } = this.props;
+		let total = 0;
+		cart.map((eachItem) => {
+			return total += parseFloat(eachItem.subtotal);
+		});
+		return total.toFixed(2);
+	};
+	
 	resetSearch = () => {
 		this.fetchProducts();
 	};
+	
+	startCheckout = () => {
+		const { history } = this.props;
+		const loggedIn = localStorage.getItem("isAuthenticated");
+		if (loggedIn) {
+			history.push('/checkout')
+		}
+		toaster.error('Please sign into your account first');
+		this.handleDisplayModal('signin');
+	};
 
 	renderModals ( displayModal, openModal ) {
-		const {authLoading} = this.props;
+		const {
+			authLoading,
+			productDetails,
+			history,
+			cart,
+			cartLoading,
+			removeFromCart
+		} = this.props;
 		switch (openModal) {
 			case "signup":
 				return (
 					<SignUp
 						displayModal={displayModal}
 						handleCloseModal={this.handleCloseModal}
+						handleDisplayModal={this.handleDisplayModal}
 						signupUser={this.signUpUser}
 						authLoading={authLoading}
 					/>
@@ -160,8 +201,23 @@ export class Homepage extends Component {
 					<SignIn
 						displayModal={displayModal}
 						handleCloseModal={this.handleCloseModal}
+						handleDisplayModal={this.handleDisplayModal}
 						signInUser={this.signInUser}
 						authLoading={authLoading}
+					/>
+				);
+			case "checkoutCart":
+				return (
+					<CheckoutCart
+						productDetails={productDetails}
+						displayModal={displayModal}
+						handleCloseModal={this.handleCloseModal}
+						history={history}
+						cart={cart}
+						loadingShoppingCart={cartLoading}
+						retrieveCart={this.handleRetrieveCart}
+						removeFromCart={removeFromCart}
+						startCheckout={this.startCheckout}
 					/>
 				);
 			default:
@@ -185,7 +241,7 @@ export class Homepage extends Component {
 			/>
 		);
 	}
-
+	
 	renderPagination () {
 		const {productsCount, productsLoading} = this.props;
 		const {page} = this.state;
@@ -202,17 +258,22 @@ export class Homepage extends Component {
 			)
 		)
 	}
-
 	render () {
 		const {
 			displayModal,
 			openModal
 		} = this.state;
+		const {cart} = this.props;
     	return (
 			<Fragment>
 				<div className="homepage">
 					<header className="navbar">
-						<NavbarHome handleDisplayModal={this.handleDisplayModal} />
+						<NavbarHome
+							cartCount={cart.length}
+							retrieveCart={this.handleRetrieveCart}
+							handleDisplayModal={this.handleDisplayModal}
+							bagTotal={this.calculateBagTotal}
+						/>
 						<NavbarProfile handleSearch={this.handleSearch} resetSearch={this.resetSearch}/>
 					</header>
 					<div className="catalogue-section">
@@ -254,12 +315,16 @@ Homepage.defaultProps = {
 	productsResponse: null,
 };
 
-const mapStateToProps = ({ products,auth }) => ({
+const mapStateToProps = ({ products,auth, shoppingCart }) => ({
 	allProducts: products.products,
 	productsCount: products.count,
 	productsLoading: products.loading,
 	authLoading: auth.loading,
 	productsResponse: products,
+	cart: shoppingCart.cart,
+	productDetails: products.singleProductDetails,
+	cart_Id: shoppingCart.cart_Id,
+	cartLoading: shoppingCart.loadingShoppingCart
 });
 
 const mapDispatchToProps = {
@@ -269,6 +334,9 @@ const mapDispatchToProps = {
 	filterAllDepartments,
 	filterAllCategories,
 	searchAllProducts,
+	getCartId,
+	retrieveCart,
+	removeFromCart
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Homepage);

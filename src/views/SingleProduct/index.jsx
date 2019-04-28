@@ -1,6 +1,5 @@
 import React, {Component,Fragment} from 'react';
 import { connect } from 'react-redux';
-import {singleProductDetails, singleProductReviews} from "../../redux/actionCreator/products";
 import NavbarHome from '../../components/Navbar/NavbarHome/Index';
 import Loading from '../../components/Loading/index';
 import NavBarCollapse from '../../components/Navbar/NavBarCollapse/index';
@@ -10,7 +9,11 @@ import Footer from '../../components/Footer/index';
 import './SingleProduct.scss';
 import SignUp from "../SignUp";
 import SignIn from "../SignIn";
+import CheckoutCart from "../CheckoutCart";
 import {signUp, signIn} from '../../redux/actionCreator/auth';
+import { addToCart, retrieveCart, removeFromCart } from "../../redux/actionCreator/shoppingCart";
+import {singleProductDetails, singleProductReviews} from "../../redux/actionCreator/products";
+import toaster from "toastr";
 
 export class SingleProduct extends Component {
   state = {
@@ -48,6 +51,21 @@ export class SingleProduct extends Component {
     this.setState( {
       displayModal: false,
     })
+  };
+  
+  handleRetrieveCart = () => {
+    const { retrieveCart } = this.props;
+    const cart_id = localStorage.getItem("cart_id");
+    retrieveCart(cart_id);
+  };
+  
+  calculateBagTotal = () => {
+    const { cart } = this.props;
+    let total = 0;
+    cart.map((eachItem) => {
+      return total += parseFloat(eachItem.subtotal);
+    });
+    return total.toFixed(2);
   };
   
   increaseQuantity = () => {
@@ -91,15 +109,44 @@ export class SingleProduct extends Component {
     const {signIn} = this.props;
     signIn(query, this.handleCloseModal);
   };
+  
+  startCheckout = () => {
+    const { history } = this.props;
+    const loggedIn = localStorage.getItem("isAuthenticated");
+    
+    if (loggedIn) {
+      return history.push('/checkout')
+    }
+    toaster.error('Please sign into your account first');
+    
+    this.handleDisplayModal('signin');
+  };
+  
+  handleAddToCart = () => {
+    const { addToCart, productDetails:{product_id} } = this.props;
+    const { selectedColour, selectedSize} = this.state;
+    
+    const cartId = localStorage.getItem("cart_id");
+    
+    if (cartId) return addToCart({cart_id: cartId, product_id, attributes: `${selectedColour}, ${selectedSize}`});
+  };
 
   renderModals ( displayModal, openModal ) {
-    const {authLoading} = this.props;
+    const {
+      authLoading,
+      history,
+      productDetails,
+      cart,
+      cartLoading,
+      removeFromCart
+    } = this.props;
     switch (openModal) {
       case "signup":
         return (
           <SignUp
             displayModal={displayModal}
             handleCloseModal={this.handleCloseModal}
+            handleDisplayModal={this.handleDisplayModal}
             signupUser={this.signUpUser}
             authLoading={authLoading}
           />
@@ -109,23 +156,49 @@ export class SingleProduct extends Component {
           <SignIn
             displayModal={displayModal}
             handleCloseModal={this.handleCloseModal}
+            handleDisplayModal={this.handleDisplayModal}
             signInUser={this.signInUser}
             authLoading={authLoading}
           />
         );
+      case "checkoutCart":
+        return (
+          <CheckoutCart
+            productDetails={productDetails}
+            displayModal={displayModal}
+            handleCloseModal={this.handleCloseModal}
+            history={history}
+            cart={cart}
+            loadingShoppingCart={cartLoading}
+            retrieveCart={this.handleRetrieveCart}
+            removeFromCart={removeFromCart}
+            startCheckout={this.startCheckout}
+          />
+        );
       default:
-        return null;
+        break;
     }
   }
 
 	render() {
-		const { productDetails, reviewsLoading, reviews, history } = this.props;
+		const {
+		  productDetails,
+      reviewsLoading,
+      reviews,
+      history,
+      cart
+		} = this.props;
 		const { displayModal, openModal, quantity, selectedSize,selectedColour } = this.state;
 		return (
 			<Fragment>
         <div className="product">
 					<header>
-						<NavbarHome handleDisplayModal={this.handleDisplayModal}/>
+						<NavbarHome
+              cartCount={cart.length}
+              retrieveCart={this.handleRetrieveCart}
+              handleDisplayModal={this.handleDisplayModal}
+              bagTotal={this.calculateBagTotal}
+            />
 						<NavBarCollapse history={history}/>
 					</header>
           {
@@ -144,6 +217,8 @@ export class SingleProduct extends Component {
                       selectedSize={selectedSize}
                       selectedColour={selectedColour}
                       colourSelector={this.colourSelector}
+                      handleDisplayModal={this.handleDisplayModal}
+                      handleAddToCart={this.handleAddToCart}
                     />
                   </section>
                   <section className="product-reviews">
@@ -163,19 +238,25 @@ export class SingleProduct extends Component {
 	}
 }
 
-const mapStateToProps = ({products, auth}) => ({
+const mapStateToProps = ({products, auth, shoppingCart}) => ({
 	productDetails: products.singleProductDetails,
 	loadingProduct: products.loading,
   authLoading: auth.loading,
   reviews: products.reviews,
-  reviewsLoading: products.reviewsLoading
+  reviewsLoading: products.reviewsLoading,
+  cart_Id: shoppingCart.cart_Id,
+  cart: shoppingCart.cart,
+  cartLoading: shoppingCart.loadingShoppingCart
 });
 
 const mapDispatchToProps = {
 	signUp,
 	signIn,
 	singleProductDetails,
-  singleProductReviews
+  singleProductReviews,
+  addToCart,
+  retrieveCart,
+  removeFromCart
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SingleProduct);

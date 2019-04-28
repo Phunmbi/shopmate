@@ -10,6 +10,7 @@ export class Modal extends Component {
 			title,
 			additionalOptions,
 			handleCloseModal,
+			handleDisplayModal
 		} = this.props;
     return (
 			<Fragment>
@@ -26,7 +27,7 @@ export class Modal extends Component {
 							<div className="modal-main__body" style={{ height: height }}>
 								{childForm()}
 							</div>
-							<div className="modal-main__additional">{additionalOptions()}</div>
+							<div className="modal-main__additional">{additionalOptions(handleDisplayModal)}</div>
 						</div>
 					</div>
 				</div>

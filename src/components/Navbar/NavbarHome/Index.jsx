@@ -5,8 +5,13 @@ import UKFlag from '../../../images/united-kingdom-icon.svg';
 import './NavbarHome.scss';
 
 export class NavbarHome extends Component {
+	componentDidMount() {
+		const { retrieveCart } = this.props;
+		retrieveCart();
+	}
+	
 	render () {
-		const {handleDisplayModal} = this.props;
+		const {handleDisplayModal, cartCount, bagTotal} = this.props;
 		const isAuthenticated = localStorage.getItem( "isAuthenticated" );
 		const userName = localStorage.getItem( "name" );
 		return (
@@ -46,9 +51,9 @@ export class NavbarHome extends Component {
 							<img src={UKFlag} alt="United Kingdom Flag" />
 							<h3>£ GBP</h3>
 						</div>
-						<div className="navbar-home__cart">
-							<Cart />
-							<div>Your Bag: £3.99</div>
+						<div onClick={() => handleDisplayModal('checkoutCart')} className="navbar-home__cart">
+							<Cart cartCount={cartCount}/>
+							<div>Your Bag: £{bagTotal()}</div>
 						</div>
 					</div>
 				</div>

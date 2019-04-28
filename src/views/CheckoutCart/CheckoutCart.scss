@@ -91,12 +91,14 @@
             text-align: center;
             outline: none;
           }
-          button:first-child{
-            background-color: white;
-            color: var(--red-pink);
+          button:first-child, button:nth-child(3){
+            background-color: var(--red-pink);
+            color: white;
           }
           button:nth-child(2){
-            background-color: var(--red-pink);
+            cursor: not-allowed;
+            background-color: #e2e2e2;
+            border: none;
             color: white;
           }
         }

@@ -53,6 +53,33 @@
           height: 20px;
         }
       }
+      .product-details__prices{
+        display: flex;
+        justify-content: space-around;
+        width: 60%;
+        color: var(--red-pink);
+        margin: 0;
+        font-weight: bold;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: 1.5;
+        letter-spacing: normal;
+        .product-details__discountedPrice{
+          background-color: var(--red-pink);
+          color: white;
+          text-decoration: line-through;
+        }
+      }
+
+      .product-details__price{
+        font-weight: bold;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: 1.5;
+        letter-spacing: normal;
+        text-align: left;
+        color: var(--red-pink);
+      }
       h3{
         font-size: 24px;
         font-weight: bold;

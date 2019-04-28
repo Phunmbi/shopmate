@@ -71,6 +71,7 @@ class CheckoutCart extends Component {
     return(
       <div className="checkout-button">
         <button onClick={() => this.handleBackToShop()}>Back to Shop</button>
+        <button disabled>Update</button>
         <button onClick={() => startCheckout()}>Checkout</button>
       </div>
     )

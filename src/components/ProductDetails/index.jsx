@@ -57,6 +57,7 @@ class ProductDetails extends Component {
     } = this.props;
     const srcImage = image => `https://backendapi.turing.com/images/products/${image}`;
     const sizes = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
+    console.log(productDetails);
     return (
       <Fragment>
         { loading ?
@@ -80,7 +81,17 @@ class ProductDetails extends Component {
                     })}
                   </div>
                   <h3>{productDetails.name}</h3>
-                  <h3>£{productDetails.price}</h3>
+                  {productDetails.discounted_price === "0.00" ?
+                    (
+                      <h3 className="product-details__price">£{productDetails.price}</h3>
+                    ) :
+                    (
+                      <div className="product-details__prices">
+                        <h3 className="product-details__discountedPrice">£{productDetails.price}</h3>
+                        <h3 className="product-details__price">£{productDetails.discounted_price}</h3>
+                      </div>
+                    )
+                  }
                   <div className="product-details__color">
                     <h4>Color</h4>
                     <div onClick={(event) => colourSelector(event)} className="product-details__eachColor">

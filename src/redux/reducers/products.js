@@ -11,30 +11,9 @@ const initialState = {
 	reviewsLoading: false
 };
 
-const auth = ( state = initialState, action ) => {
+const product = ( state = initialState, action ) => {
 	switch (action.type) {
 		case types.GET_ALL_PRODUCTS:
-			return {
-				...state,
-				loading: true,
-				count: null,
-				error: '',
-			};
-		case types.GET_ALL_PRODUCTS_SUCCESS:
-			return {
-				...state,
-				loading: false,
-				count: action.payload.count,
-				products: [...action.payload.rows],
-				error: '',
-			};
-		case types.GET_ALL_PRODUCTS_FAILURE:
-			return {
-				...state,
-				count: null,
-				loading: false,
-				error: action.payload,
-			};
 		case types.FILTER_ALL_DEPARTMENTS:
 		case types.FILTER_ALL_CATEGORIES:
 		case types.SEARCH_ALL_PRODUCTS:
@@ -45,15 +24,9 @@ const auth = ( state = initialState, action ) => {
 				error: '',
 			};
 		case types.FILTER_ALL_DEPARTMENTS_SUCCESS:
-			return {
-				...state,
-				loading: false,
-				count: action.payload.count.count,
-				products: [...action.payload.rows],
-				error: '',
-			};
+		case types.SEARCH_ALL_PRODUCTS_SUCCESS:
 		case types.FILTER_ALL_CATEGORIES_SUCCESS:
-        case types.SEARCH_ALL_PRODUCTS_SUCCESS:
+		case types.GET_ALL_PRODUCTS_SUCCESS:
 			return {
 				...state,
 				loading: false,
@@ -63,6 +36,7 @@ const auth = ( state = initialState, action ) => {
 			};
 		case types.FILTER_ALL_DEPARTMENTS_FAILURE:
 		case types.FILTER_ALL_CATEGORIES_FAILURE:
+		case types.GET_ALL_PRODUCTS_FAILURE:
 		case types.SEARCH_ALL_PRODUCTS_FAILURE:
 			return {
 				...state,
@@ -116,4 +90,4 @@ const auth = ( state = initialState, action ) => {
 	}
 };
 
-export default auth;
+export default product;

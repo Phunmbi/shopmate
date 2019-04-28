@@ -52,7 +52,8 @@ class ProductDetails extends Component {
       sizeSelector,
       selectedSize,
       selectedColour,
-      colourSelector
+      colourSelector,
+      handleAddToCart
     } = this.props;
     const srcImage = image => `https://backendapi.turing.com/images/products/${image}`;
     const sizes = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
@@ -65,10 +66,10 @@ class ProductDetails extends Component {
               <div className="product-details__container">
                 <div className="product-details__imageContainer">
                   <div className="product-details__mainImage">
-                    <img src={srcImage(productDetails.thumbnail)} alt=""/>
+                    <img src={srcImage(productDetails.image)} alt=""/>
                   </div>
                   <div className="product-details__thumbnails">
-                    <img src={srcImage(productDetails.image)} alt=""/>
+                    <img src={srcImage(productDetails.thumbnail)} alt=""/>
                     <img src={srcImage(productDetails.image_2)} alt=""/>
                   </div>
                 </div>
@@ -116,7 +117,7 @@ class ProductDetails extends Component {
                     </div>
                   </div>
                   <div className="product-details__action">
-                    <button>Add to Cart</button>
+                    <button onClick={() => handleAddToCart()}>Add to Cart</button>
                     <div className="product-details__wishList">
                       <img src={Heart} alt=""/>
                       <p>Add to Wish List</p>

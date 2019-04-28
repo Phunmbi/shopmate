@@ -1,40 +1,40 @@
 import axios from 'axios';
-import baseURL from './index';
+import BaseAuthorization from './index';
 
 export default class HomeAPI {
 	static getProducts ( action ) {
 		const {page, limit} = action;
-		return axios.get( `${baseURL}/products?page=${page}&limit=${limit}`);
+		return axios.get( `${BaseAuthorization.baseURL}/products?page=${page}&limit=${limit}`);
 	}
 
 	static filterAllDepartments ( action ) {
 		const {deptId, query} = action;
-		return axios.get( `${baseURL}/products/inDepartment/${deptId}?page=${query.page}&limit=${query.limit}`);
+		return axios.get( `${BaseAuthorization.baseURL}/products/inDepartment/${deptId}?page=${query.page}&limit=${query.limit}`);
 	}
 
 	static filterAllCategories ( action ) {
 		const {CategoryId, query} = action;
 		return axios.get(
-			`${baseURL}/products/inCategory/${CategoryId}?page=${query.page}&limit=${query.limit}`
+			`${BaseAuthorization.baseURL}/products/inCategory/${CategoryId}?page=${query.page}&limit=${query.limit}`
 		);
 	}
 
 	static searchAllProducts (action) {
 		const {queryString, pageDetails} = action;
 		return axios.get(
-			`${baseURL}/products/search?query_string=${queryString}&page=${pageDetails.page}&limit=${pageDetails.limit}`
+			`${BaseAuthorization.baseURL}/products/search?query_string=${queryString}&page=${pageDetails.page}&limit=${pageDetails.limit}`
 		);
 	}
 
     static singleProductDetails (action) {
 			const {productId} = action;
 			return axios.get(
-					`${baseURL}/products/${productId}`
+					`${BaseAuthorization.baseURL}/products/${productId}`
 			);
     }
 
     static singleProductReviews (action) {
 			const { productId } = action;
-			return axios.get(`${baseURL}/products/${productId}/reviews`);
+			return axios.get(`${BaseAuthorization.baseURL}/products/${productId}/reviews`);
 		}
 }

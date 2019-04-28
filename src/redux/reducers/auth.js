@@ -11,6 +11,7 @@ const auth = (state = initialState, action) => {
 	switch (action.type) {
 		case types.SIGN_UP:
 		case types.SIGN_IN:
+		case types.GET_USER:
 			return {
         ...state,
         loading: true,
@@ -18,6 +19,7 @@ const auth = (state = initialState, action) => {
 			};
 		case types.SIGN_UP_SUCCESS:
 		case types.SIGN_IN_SUCCESS:
+		case types.GET_USER_SUCCESS:
 			return {
         ...state,
         loading: false,
@@ -27,6 +29,7 @@ const auth = (state = initialState, action) => {
 			};
 		case types.SIGN_UP_FAILURE:
 		case types.SIGN_IN_FAILURE:
+		case types.GET_USER_FAILURE:
 			return {
 				...state,
 				loading: false,

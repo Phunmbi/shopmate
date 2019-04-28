@@ -43,9 +43,9 @@ export default class index extends Component {
 							</form>
 							<p onClick={() => this.handleResetSearch()}>x</p>
 						</div>
-						<div className="navbar-profile__user">
+						{localStorage.isAuthenticated ? (<div className="navbar-profile__user">
 							<img src={UserProfile} alt="Profile" />
-						</div>
+						</div>) : null}
 					</div>
 				</div>
 			</Fragment>

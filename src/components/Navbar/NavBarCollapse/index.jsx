@@ -1,5 +1,5 @@
 import React, {Component, Fragment} from 'react';
-import MenuIcon from '../../../images/menu.svg';
+import UserProfile from '../../../images/profile-picture.svg'
 import './navbarCollapse.scss'
 
 class NavBarCollapse extends Component {
@@ -10,7 +10,7 @@ class NavBarCollapse extends Component {
         <div className="navbar-collapse">
           <div className="navbar-collapse__container">
             <h3 onClick={() => {history.push('/')}}>SHOPMATE</h3>
-            <img src={MenuIcon} alt="Menu"/>
+            {localStorage.isAuthenticated ? <img src={UserProfile} alt="Profile"/> : null}
           </div>
         </div>
       </Fragment>

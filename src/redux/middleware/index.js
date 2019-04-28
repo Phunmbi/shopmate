@@ -7,7 +7,17 @@ import {
   watchSingleProductDetails,
   watchSingleProductReviews
 } from './productsSaga';
-import {watchSignUp, watchSignIn} from './authSaga';
+import {
+  watchGetCartId,
+  watchAddToCart,
+  watchRetrieveCart,
+  watchRemoveFromCart
+} from "./shoppingCartSaga";
+import {
+  watchSignUp,
+  watchSignIn,
+  watchGetUser,
+} from './authSaga';
 
 
 function* rootSaga () {
@@ -15,11 +25,16 @@ function* rootSaga () {
     watchGetProducts(),
     watchSignUp(),
     watchSignIn(),
+    watchGetUser(),
     watchFilterAllDepartments(),
     watchFilterAllCategories(),
     watchSearchAllProducts(),
     watchSingleProductDetails(),
-    watchSingleProductReviews()
+    watchSingleProductReviews(),
+    watchGetCartId(),
+    watchAddToCart(),
+    watchRetrieveCart(),
+    watchRemoveFromCart()
   ])
 }
 

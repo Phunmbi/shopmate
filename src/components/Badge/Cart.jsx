@@ -4,11 +4,12 @@ import './Cart.scss'
 
 export class Cart extends Component {
   render() {
+		const { cartCount } = this.props;
     return (
 			<Fragment>
 				<div className="cart-main">
 					<img src={checkoutBag} alt="Checkout Bag" />
-					<div className="cart-main__count">6</div>
+					<div className="cart-main__count">{cartCount}</div>
 				</div>
 			</Fragment>
 		);

@@ -52,10 +52,12 @@ class ProductDetails extends Component {
       sizeSelector,
       selectedSize,
       selectedColour,
-      colourSelector
+      colourSelector,
+      handleAddToCart
     } = this.props;
     const srcImage = image => `https://backendapi.turing.com/images/products/${image}`;
     const sizes = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
+    console.log(productDetails);
     return (
       <Fragment>
         { loading ?
@@ -65,10 +67,10 @@ class ProductDetails extends Component {
               <div className="product-details__container">
                 <div className="product-details__imageContainer">
                   <div className="product-details__mainImage">
-                    <img src={srcImage(productDetails.thumbnail)} alt=""/>
+                    <img src={srcImage(productDetails.image)} alt=""/>
                   </div>
                   <div className="product-details__thumbnails">
-                    <img src={srcImage(productDetails.image)} alt=""/>
+                    <img src={srcImage(productDetails.thumbnail)} alt=""/>
                     <img src={srcImage(productDetails.image_2)} alt=""/>
                   </div>
                 </div>
@@ -79,7 +81,17 @@ class ProductDetails extends Component {
                     })}
                   </div>
                   <h3>{productDetails.name}</h3>
-                  <h3>£{productDetails.price}</h3>
+                  {productDetails.discounted_price === "0.00" ?
+                    (
+                      <h3 className="product-details__price">£{productDetails.price}</h3>
+                    ) :
+                    (
+                      <div className="product-details__prices">
+                        <h3 className="product-details__discountedPrice">£{productDetails.price}</h3>
+                        <h3 className="product-details__price">£{productDetails.discounted_price}</h3>
+                      </div>
+                    )
+                  }
                   <div className="product-details__color">
                     <h4>Color</h4>
                     <div onClick={(event) => colourSelector(event)} className="product-details__eachColor">
@@ -116,7 +128,7 @@ class ProductDetails extends Component {
                     </div>
                   </div>
                   <div className="product-details__action">
-                    <button>Add to Cart</button>
+                    <button onClick={() => handleAddToCart()}>Add to Cart</button>
                     <div className="product-details__wishList">
                       <img src={Heart} alt=""/>
                       <p>Add to Wish List</p>

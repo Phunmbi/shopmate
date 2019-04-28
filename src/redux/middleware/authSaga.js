@@ -1,8 +1,14 @@
 import {call, put, takeLatest} from 'redux-saga/effects';
 import toast from 'toastr';
-import {SIGN_UP, SIGN_IN} from '../constants/actionTypes'
+import {SIGN_UP, SIGN_IN, GET_USER} from '../constants/actionTypes'
 import AuthAPI from '../../services/auth';
-import {signUpSuccess, signUpFailure, signInSuccess, signInFailure } from '../actionCreator/auth';
+import {
+  signUpSuccess,
+  signUpFailure,
+  signInSuccess,
+  signInFailure,
+  getUserSuccess, getUserFailure
+} from '../actionCreator/auth';
 
 export function* signUpSaga ( action ) {
   try {
@@ -38,8 +44,8 @@ export function* signInSaga ( action ) {
     console.log( response );
     // Persist user details
     localStorage.setItem( "accessToken", response.data.accessToken );
-    localStorage.setItem( "isAuthenticated", true );
-    localStorage.setItem( "name", response.data.user.name );
+    localStorage.setItem( "isAuthenticated", 'true' );
+    localStorage.setItem( "name", response.data.customer.name );
 
     yield put( signInSuccess( response.data ) );
 
@@ -55,4 +61,23 @@ export function* signInSaga ( action ) {
 
 export function* watchSignIn () {
   yield takeLatest( SIGN_IN, signInSaga );
+}
+
+export function* getUserSaga ( ) {
+  try {
+    const response = yield call( AuthAPI.getUser );
+    
+    console.log( response );
+    // Confirm user authorization status
+    localStorage.setItem( "isAuthenticated", 'true' );
+    
+    yield put( getUserSuccess( response.data ) );
+  } catch ( error ) {
+    localStorage.removeItem( "accessToken" );
+    yield put( getUserFailure( error ) );
+  }
+}
+
+export function* watchGetUser () {
+  yield takeLatest( GET_USER, getUserSaga );
 }

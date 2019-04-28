@@ -1,3 +1,6 @@
-const baseURL = 'https://backendapi.turing.com';
+const BaseAuthorization = {
+  baseURL: 'https://backendapi.turing.com',
+  token:  {'user-key': localStorage.getItem("accessToken")}
+};
 
-export default baseURL;
+export default BaseAuthorization;

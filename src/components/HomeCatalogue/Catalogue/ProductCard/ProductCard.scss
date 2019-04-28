@@ -1,4 +1,4 @@
-.card-main{
+.card-container{
   display: flex;
   justify-content: space-around;
   flex-direction: column;
@@ -7,46 +7,74 @@
   flex-basis: 232px;
   flex-wrap: wrap;
   height: 336px;
-  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2);
-  background-color: var(--white-two);
-  &:hover{
-    box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.2);
-    cursor: pointer;
-  }
-  h3, p{
-    margin: 0;
-  }
-
-  .card-main__image{
-    img{
-      width: 163px;
-      height: 163px;
+  .card-main {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    align-items: center;
+    align-content: space-around;
+    flex-wrap: wrap;
+    height: 100%;
+    width: 100%;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2);
+    background-color: var(--white-two);
+    &:hover{
+      box-shadow: 0 6px 8px 0 rgba(0, 0, 0, 0.2);
+      cursor: pointer;
     }
-  }
-  .card-main__price{
-    font-size: 16px;
-    font-weight: bold;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: 1.5;
-    letter-spacing: normal;
-    text-align: center;
-    color: var(--red-pink);
-  }
-  .card-main__button{
-    cursor: pointer;
-    width: 91px;
-    height: 35px;
-    border-radius: 24px;
-    background-color: var(--red-pink);
-    font-size: 12px;
-    font-weight: bold;
-    font-style: normal;
-    font-stretch: normal;
-    line-height: 2;
-    letter-spacing: normal;
-    text-align: center;
-    color: var(--white-two);
-    outline: none;
+    h3, p{
+      margin: 0;
+    }
+
+    .card-main__image{
+      img{
+        width: 163px;
+        height: 163px;
+      }
+    }
+    .card-main__prices{
+      display: flex;
+      justify-content: space-around;
+      width: 60%;
+      color: var(--red-pink);
+      font-size: 16px;
+      font-weight: bold;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: 1.5;
+      letter-spacing: normal;
+      .card-main__discountedPrice{
+        background-color: var(--red-pink);
+        color: white;
+        text-decoration: line-through;
+        font-size: 14px;
+      }
+    }
+    .card-main__price{
+      font-size: 16px;
+      font-weight: bold;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: 1.5;
+      letter-spacing: normal;
+      text-align: center;
+      color: var(--red-pink);
+    }
+    .card-main__button{
+      cursor: pointer;
+      width: 91px;
+      height: 35px;
+      border-radius: 24px;
+      background-color: var(--red-pink);
+      font-size: 12px;
+      font-weight: bold;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: 2;
+      letter-spacing: normal;
+      text-align: center;
+      color: var(--white-two);
+      outline: none;
+    }
   }
 }

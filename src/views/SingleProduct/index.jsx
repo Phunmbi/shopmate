@@ -11,7 +11,7 @@ import SignUp from "../SignUp";
 import SignIn from "../SignIn";
 import CheckoutCart from "../CheckoutCart";
 import {signUp, signIn} from '../../redux/actionCreator/auth';
-import { addToCart, retrieveCart, removeFromCart } from "../../redux/actionCreator/shoppingCart";
+import { addToCart, retrieveCart, removeFromCart, updateCart } from "../../redux/actionCreator/shoppingCart";
 import {singleProductDetails, singleProductReviews} from "../../redux/actionCreator/products";
 import toaster from "toastr";
 
@@ -93,6 +93,17 @@ export class SingleProduct extends Component {
     });
   };
   
+  handleUpdateCart = (toBeUpdated) => {
+    const { updateCart } = this.props;
+    toBeUpdated.map((eachItem) => {
+      localStorage.setItem(eachItem.changingId, JSON.stringify({
+        quantity: eachItem.quantity,
+        changingId: eachItem.changingId
+      }));
+      return updateCart({item_id: eachItem.changingId, quantity: eachItem.quantity});
+    });
+  };
+  
   colourSelector = (event) => {
     this.setState({
       ...this.state,
@@ -164,6 +175,8 @@ export class SingleProduct extends Component {
       case "checkoutCart":
         return (
           <CheckoutCart
+            increaseQuantity={this.increaseQuantity}
+            reduceQuantity={this.reduceQuantity}
             productDetails={productDetails}
             displayModal={displayModal}
             handleCloseModal={this.handleCloseModal}
@@ -173,6 +186,7 @@ export class SingleProduct extends Component {
             retrieveCart={this.handleRetrieveCart}
             removeFromCart={removeFromCart}
             startCheckout={this.startCheckout}
+            handleUpdateCart={this.handleUpdateCart}
           />
         );
       default:
@@ -256,7 +270,8 @@ const mapDispatchToProps = {
   singleProductReviews,
   addToCart,
   retrieveCart,
-  removeFromCart
+  removeFromCart,
+  updateCart
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SingleProduct);

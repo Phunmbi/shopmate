@@ -275,7 +275,7 @@ export class Homepage extends Component {
 			displayModal,
 			openModal
 		} = this.state;
-		const {cart} = this.props;
+		const {cart, history} = this.props;
     	return (
 			<Fragment>
 				<div className="homepage">
@@ -286,7 +286,7 @@ export class Homepage extends Component {
 							handleDisplayModal={this.handleDisplayModal}
 							bagTotal={this.calculateBagTotal}
 						/>
-						<NavbarProfile handleSearch={this.handleSearch} resetSearch={this.resetSearch}/>
+						<NavbarProfile history={history} handleSearch={this.handleSearch} resetSearch={this.resetSearch}/>
 					</header>
 					<div className="catalogue-section">
 						<Hero />

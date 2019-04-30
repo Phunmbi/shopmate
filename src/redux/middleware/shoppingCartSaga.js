@@ -3,7 +3,7 @@ import toast from 'toastr';
 import {
   ADD_TO_CART,
   GET_CART_ID, REMOVE_FROM_CART,
-  RETRIEVE_CART,
+  RETRIEVE_CART, UPDATE_CART,
 } from '../constants/actionTypes'
 import {
   getCartIdSuccess,
@@ -11,7 +11,11 @@ import {
   addToCartSuccess,
   addToCartFailure,
   retrieveCartSuccess,
-  retrieveCartFailure, removeFromCartSuccess, removeFromCartFailure
+  retrieveCartFailure,
+  removeFromCartSuccess,
+  removeFromCartFailure,
+  updateCartSuccess,
+  updateCartFailure
 } from '../actionCreator/shoppingCart';
 import shoppingCartAPI from "../../services/shoppingCart";
 
@@ -77,4 +81,20 @@ export function* removeFromCartSaga ( action ) {
 
 export function* watchRemoveFromCart () {
   yield takeLatest( REMOVE_FROM_CART, removeFromCartSaga );
+}
+
+export function* updateCartSaga ( action ) {
+  try {
+    const { item_id, quantity } = action;
+    const response = yield call( shoppingCartAPI.updateCart, {item_id, quantity} );
+    yield put( updateCartSuccess( response.data ) );
+    toast.success('Successfully updated cart');
+  } catch ( error ) {
+    toast.error( 'Failed to update cart' );
+    yield put( updateCartFailure( error ) );
+  }
+}
+
+export function* watchUpdateCart () {
+  yield takeLatest( UPDATE_CART, updateCartSaga );
 }

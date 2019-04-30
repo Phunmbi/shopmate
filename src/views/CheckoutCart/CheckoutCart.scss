@@ -12,7 +12,7 @@
   width: 1000px;
   display: flex;
   position: fixed;
-  left: 15.3vw;
+  left: 20.3vw;
   top: 6vh;
   .checkoutModal-main{
     background-color: white;
@@ -95,16 +95,25 @@
             background-color: var(--red-pink);
             color: white;
           }
-          button:nth-child(2){
-            cursor: not-allowed;
-            background-color: #e2e2e2;
-            border: none;
-            color: white;
-          }
         }
       }
     }
   }
+}
+
+
+.active-button {
+  background-color: var(--red-pink);
+  color: white;
+  cursor: pointer;
+  border: none;
+}
+
+.inactive-button{
+  cursor: not-allowed !important;
+  background-color: #e2e2e2;
+  border: none;
+  color: white;
 }
 
 .checkout-container{
@@ -211,6 +220,9 @@
         margin-left: 40px;
         width: 130px;
         justify-content: space-between;
+        img{
+          cursor: pointer;
+        }
         .checkout-container__count{
           width: 50px;
           height: 36px;

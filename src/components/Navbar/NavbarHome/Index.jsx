@@ -1,7 +1,5 @@
 import React, {Component,Fragment} from 'react';
-import {Link} from 'react-router-dom';
 import Cart from '../../Badge/Cart';
-import UKFlag from '../../../images/united-kingdom-icon.svg';
 import './NavbarHome.scss';
 
 export class NavbarHome extends Component {
@@ -42,15 +40,6 @@ export class NavbarHome extends Component {
 								</h3>
 							</div>
 						)}
-						<div className="navbar-home__link">
-							<Link to="#">Daily Deals</Link>
-							<Link to="#">Sell</Link>
-							<Link to="#">Help & Contact</Link>
-						</div>
-						<div className="navbar-home__nation">
-							<img src={UKFlag} alt="United Kingdom Flag" />
-							<h3>£ GBP</h3>
-						</div>
 						<div onClick={() => handleDisplayModal('checkoutCart')} className="navbar-home__cart">
 							<Cart cartCount={cartCount}/>
 							<div>Your Bag: £{bagTotal()}</div>

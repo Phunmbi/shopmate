@@ -22,4 +22,11 @@ export default class shoppingCartAPI {
   static removeFromCart (item_id) {
     return axios.delete(`${BaseAuthorization.baseURL}/shoppingcart/removeProduct/${item_id}`)
   }
+  
+  static updateCart (action) {
+    const {item_id, quantity} = action;
+    return axios.put(`${BaseAuthorization.baseURL}/shoppingcart/update/${item_id}`, {
+      quantity: quantity
+    })
+  }
 }

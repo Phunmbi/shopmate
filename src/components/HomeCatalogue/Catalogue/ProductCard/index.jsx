@@ -6,7 +6,6 @@ import './ProductCard.scss';
 class Card extends Component {
     render() {
         const {product} = this.props;
-        console.log(product);
         const srcImage = `https://backendapi.turing.com/images/products/${product.thumbnail}`;
         const productRedirect = `/product/${product.product_id}`;
         return (

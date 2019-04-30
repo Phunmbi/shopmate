@@ -20,7 +20,7 @@ import {
 	filterAllCategories,
 	searchAllProducts,
 } from '../../redux/actionCreator/products';
-import { getCartId, retrieveCart, removeFromCart } from "../../redux/actionCreator/shoppingCart";
+import { getCartId, retrieveCart, removeFromCart, updateCart } from "../../redux/actionCreator/shoppingCart";
 import {signUp, signIn} from '../../redux/actionCreator/auth';
 import CheckoutCart from "../CheckoutCart";
 
@@ -140,6 +140,17 @@ export class Homepage extends Component {
 			displayModal: false,
 		})
 	};
+	
+	handleUpdateCart = (toBeUpdated) => {
+		const { updateCart} = this.props;
+		toBeUpdated.map((eachItem) => {
+			localStorage.setItem(eachItem.changingId, JSON.stringify({
+				quantity: eachItem.quantity,
+				changingId: eachItem.changingId
+			}));
+			return updateCart({item_id: eachItem.changingId, quantity: eachItem.quantity});
+		});
+	};
 
 	handleSearch = (event, queryString) => {
 		event.preventDefault();
@@ -218,6 +229,7 @@ export class Homepage extends Component {
 						retrieveCart={this.handleRetrieveCart}
 						removeFromCart={removeFromCart}
 						startCheckout={this.startCheckout}
+						handleUpdateCart={this.handleUpdateCart}
 					/>
 				);
 			default:
@@ -336,7 +348,8 @@ const mapDispatchToProps = {
 	searchAllProducts,
 	getCartId,
 	retrieveCart,
-	removeFromCart
+	removeFromCart,
+	updateCart
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Homepage);

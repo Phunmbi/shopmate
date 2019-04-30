@@ -5,10 +5,15 @@ import {
   GET_CART_ID,
   GET_CART_ID_FAILURE,
   GET_CART_ID_SUCCESS,
-  REMOVE_FROM_CART, REMOVE_FROM_CART_FAILURE, REMOVE_FROM_CART_SUCCESS,
+  REMOVE_FROM_CART,
+  REMOVE_FROM_CART_FAILURE,
+  REMOVE_FROM_CART_SUCCESS,
   RETRIEVE_CART,
   RETRIEVE_CART_FAILURE,
   RETRIEVE_CART_SUCCESS,
+  UPDATE_CART,
+  UPDATE_CART_FAILURE,
+  UPDATE_CART_SUCCESS,
 } from "../constants/actionTypes";
 
 export const getCartId = ( ) => {
@@ -92,6 +97,28 @@ export const removeFromCartSuccess = data => {
 export const removeFromCartFailure = error => {
   return {
     type: REMOVE_FROM_CART_FAILURE,
+    payload: error,
+  };
+};
+
+export const updateCart = ( {item_id, quantity} ) => {
+  return {
+    type: UPDATE_CART,
+    item_id,
+    quantity
+  };
+};
+
+export const updateCartSuccess = data => {
+  return {
+    type: UPDATE_CART_SUCCESS,
+    payload: data,
+  };
+};
+
+export const updateCartFailure = error => {
+  return {
+    type: UPDATE_CART_FAILURE,
     payload: error,
   };
 };

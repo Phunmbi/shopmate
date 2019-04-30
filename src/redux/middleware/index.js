@@ -11,7 +11,8 @@ import {
   watchGetCartId,
   watchAddToCart,
   watchRetrieveCart,
-  watchRemoveFromCart
+  watchRemoveFromCart,
+  watchUpdateCart
 } from "./shoppingCartSaga";
 import {
   watchSignUp,
@@ -34,7 +35,8 @@ function* rootSaga () {
     watchGetCartId(),
     watchAddToCart(),
     watchRetrieveCart(),
-    watchRemoveFromCart()
+    watchRemoveFromCart(),
+    watchUpdateCart()
   ])
 }
 

@@ -57,7 +57,6 @@ class ProductDetails extends Component {
     } = this.props;
     const srcImage = image => `https://backendapi.turing.com/images/products/${image}`;
     const sizes = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
-    console.log(productDetails);
     return (
       <Fragment>
         { loading ?

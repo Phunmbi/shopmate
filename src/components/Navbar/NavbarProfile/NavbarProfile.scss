@@ -90,3 +90,31 @@
     }
   }
 }
+
+.navbar-dropdown__container{
+  position: absolute;
+  .navbar-dropdown__main{
+    position: relative;
+    top: 7vh;
+    left: 29vw;
+    width: 100px;
+    height: 30px;
+    margin: 0;
+    background-color: #2e2e2e;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 600;
+    font-style: normal;
+    letter-spacing: 0;
+    line-height: normal;
+    color: #e2e2e2;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    p{
+      margin: 0;
+      vertical-align: center;
+    }
+  }
+}

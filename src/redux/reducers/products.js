@@ -85,6 +85,27 @@ const product = ( state = initialState, action ) => {
         reviewsLoading: false,
         reviewsError: action.payload,
       };
+		case types.ADD_SINGLE_REVIEW:
+			return {
+				...state,
+				reviewsLoading: true,
+				reviewsError: '',
+				reviews: []
+			};
+		case types.ADD_SINGLE_REVIEW_SUCCESS:
+			return {
+				...state,
+				reviewsLoading: false,
+				reviews: state.reviews,
+				reviewsError: '',
+			};
+		case types.ADD_SINGLE_REVIEW_FAILURE:
+			return {
+				...state,
+				reviews: [],
+				reviewsLoading: false,
+				reviewsError: action.payload,
+			};
 		default:
 			return state;
 	}

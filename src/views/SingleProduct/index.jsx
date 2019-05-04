@@ -1,4 +1,5 @@
 import React, {Component,Fragment} from 'react';
+import toaster from 'toastr';
 import { connect } from 'react-redux';
 import NavbarHome from '../../components/Navbar/NavbarHome/Index';
 import Loading from '../../components/Loading/index';
@@ -12,8 +13,7 @@ import SignIn from "../SignIn";
 import CheckoutCart from "../CheckoutCart";
 import {signUp, signIn} from '../../redux/actionCreator/auth';
 import { addToCart, retrieveCart, removeFromCart, updateCart } from "../../redux/actionCreator/shoppingCart";
-import {singleProductDetails, singleProductReviews} from "../../redux/actionCreator/products";
-import toaster from "toastr";
+import {singleProductDetails, singleProductReviews, addSingleReview} from "../../redux/actionCreator/products";
 
 export class SingleProduct extends Component {
   state = {
@@ -73,6 +73,15 @@ export class SingleProduct extends Component {
       ...this.state,
       quantity: this.state.quantity + 1
     })
+  };
+  
+  handleAddSingleReview = (product_id, review, rating) => {
+    if(localStorage.getItem("isAuthenticated")) {
+      const {addSingleReview, history} = this.props;
+      return addSingleReview(product_id, review, rating, history.go);
+    }
+    toaster.error("You have to be signed in to post a review");
+    this.handleDisplayModal("signin");
   };
   
   reduceQuantity = () => {
@@ -236,7 +245,11 @@ export class SingleProduct extends Component {
                     />
                   </section>
                   <section className="product-reviews">
-                    <ProductReviews reviews={reviews} />
+                    <ProductReviews
+                      reviews={reviews}
+                      handleAddSingleReview={this.handleAddSingleReview}
+                      productDetails={productDetails}
+                    />
                   </section>
                 </Fragment>
             )
@@ -271,7 +284,8 @@ const mapDispatchToProps = {
   addToCart,
   retrieveCart,
   removeFromCart,
-  updateCart
+  updateCart,
+  addSingleReview
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SingleProduct);

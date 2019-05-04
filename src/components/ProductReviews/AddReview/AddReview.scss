@@ -19,33 +19,6 @@
     flex-direction: column;
     justify-content: space-between;
     padding-top: 10px;
-    .add-review__nickname{
-      label{
-        display: flex;
-        width: 100%;
-        justify-content: space-between;
-        font-size: 16px;
-        font-weight: bold;
-        font-style: normal;
-        font-stretch: normal;
-        line-height: 1.5;
-        letter-spacing: normal;
-        color: #2e2e2e;
-        align-items: center;
-        .add-review__input{
-          width: 600px;
-          display: flex;
-          justify-content: flex-start;
-          input{
-            width: 220px;
-            height: 48px;
-            border-radius: 6px;
-            border: solid 1px #e1e1e1;
-            background-color: #ffffff;
-          }
-        }
-      }
-    }
     .add-review__reviewDetails{
       label{
         display: flex;
@@ -60,11 +33,15 @@
         color: #2e2e2e;
         align-items: center;
         textarea{
+          padding: 10px 0;
+          text-indent: 10px;
+          font-size: 16px;
           width: 593px;
           height: 121px;
           border-radius: 6px;
           border: solid 1px #e1e1e1;
           background-color: #ffffff;
+          outline: none;
         }
         p{
           margin: 0;
@@ -102,7 +79,7 @@
       display: flex;
       justify-content: center;
       width: 570px;
-      input[type=submit]{
+      input{
         width: 91px;
         height: 35px;
         border-radius: 24px;

@@ -28,7 +28,7 @@ class ProductDetails extends Component {
     currentImage: null
   };
   
-  componentDidMount() {
+  componentWillMount() {
     const {productDetails} = this.props;
     
     this.setState({
@@ -77,7 +77,7 @@ class ProductDetails extends Component {
               <div className="product-details__container">
                 <div className="product-details__imageContainer">
                   <div className="product-details__mainImage">
-                    <img src={srcImage(this.state.currentImage)} alt=""/>-
+                    <img src={srcImage(this.state.currentImage)} alt=""/>
                   </div>
                   <div className="product-details__thumbnails">
                     <img onMouseOver={() => this.setState({currentImage: productDetails.thumbnail})} src={srcImage(productDetails.thumbnail)} alt=""/>

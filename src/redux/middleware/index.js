@@ -5,7 +5,8 @@ import {
 	watchFilterAllCategories,
   watchSearchAllProducts,
   watchSingleProductDetails,
-  watchSingleProductReviews
+  watchSingleProductReviews,
+  watchAddReview
 } from './productsSaga';
 import {
   watchGetCartId,
@@ -36,7 +37,8 @@ function* rootSaga () {
     watchAddToCart(),
     watchRetrieveCart(),
     watchRemoveFromCart(),
-    watchUpdateCart()
+    watchUpdateCart(),
+    watchAddReview()
   ])
 }
 

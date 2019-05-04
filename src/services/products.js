@@ -37,4 +37,12 @@ export default class HomeAPI {
 			const { productId } = action;
 			return axios.get(`${BaseAuthorization.baseURL}/products/${productId}/reviews`);
 		}
+		
+		static addSingleReview (action) {
+			const { product_id, review, rating} = action;
+			return axios.post(`${BaseAuthorization.baseURL}/products/${product_id}/reviews`, {
+				review: review,
+				rating: rating
+			}, {headers: BaseAuthorization.token})
+		}
 }

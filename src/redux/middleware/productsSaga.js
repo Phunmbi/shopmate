@@ -6,7 +6,7 @@ import {
 	FILTER_ALL_CATEGORIES,
 	SEARCH_ALL_PRODUCTS,
 	SINGLE_PRODUCT_DETAILS,
-	SINGLE_PRODUCT_REVIEWS
+	SINGLE_PRODUCT_REVIEWS, ADD_SINGLE_REVIEW
 } from '../constants/actionTypes'
 import ProductsAPI from '../../services/products';
 import {
@@ -21,8 +21,9 @@ import {
 	singleProductDetailsFailure,
 	singleProductDetailsSuccess,
 	singleProductReviewsFailure,
-	singleProductReviewsSuccess
+	singleProductReviewsSuccess, addSingleReviewFailure, addSingleReviewSuccess
 } from '../actionCreator/products';
+import {addToCartSuccess} from "../actionCreator/shoppingCart";
 
 export function* getProductsSaga(action) {
 	try {
@@ -114,4 +115,20 @@ export function* singleProductReviewsSaga ( action ) {
 
 export function* watchSingleProductReviews () {
   yield takeLatest( SINGLE_PRODUCT_REVIEWS, singleProductReviewsSaga );
+}
+
+export function* addSingleReviewSaga ( action ) {
+	try {
+		const {product_id, review, rating, callback} = action;
+		yield call( ProductsAPI.addSingleReview, {product_id, review, rating} );
+		toast.success( 'Successfully added new review for product' );
+		callback()
+	} catch ( error ) {
+		toast.error( 'Failed to add reviews for product' );
+		yield put( addSingleReviewFailure( error ) );
+	}
+}
+
+export function* watchAddReview () {
+	yield takeLatest( ADD_SINGLE_REVIEW, addSingleReviewSaga );
 }

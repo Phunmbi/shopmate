@@ -24,8 +24,18 @@ class ProductDetails extends Component {
       yellow: Yellow,
       green: Green,
       purple: Purple
-    }
+    },
+    currentImage: null
   };
+  
+  componentWillMount() {
+    const {productDetails} = this.props;
+    
+    this.setState({
+      ...this.state,
+      currentImage: productDetails.image
+    });
+  }
   
   renderRatings = () => {
     const {averageRating} = this.props;
@@ -55,6 +65,7 @@ class ProductDetails extends Component {
       colourSelector,
       handleAddToCart
     } = this.props;
+    
     const srcImage = image => `https://backendapi.turing.com/images/products/${image}`;
     const sizes = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
     return (
@@ -66,11 +77,11 @@ class ProductDetails extends Component {
               <div className="product-details__container">
                 <div className="product-details__imageContainer">
                   <div className="product-details__mainImage">
-                    <img src={srcImage(productDetails.image)} alt=""/>
+                    <img src={srcImage(this.state.currentImage)} alt=""/>
                   </div>
                   <div className="product-details__thumbnails">
-                    <img src={srcImage(productDetails.thumbnail)} alt=""/>
-                    <img src={srcImage(productDetails.image_2)} alt=""/>
+                    <img onMouseOver={() => this.setState({currentImage: productDetails.thumbnail})} src={srcImage(productDetails.thumbnail)} alt=""/>
+                    <img onMouseOver={() => this.setState({currentImage: productDetails.image_2})} src={srcImage(productDetails.image_2)} alt=""/>
                   </div>
                 </div>
                 <div className="product-details__details">

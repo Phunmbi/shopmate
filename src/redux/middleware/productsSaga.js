@@ -21,9 +21,8 @@ import {
 	singleProductDetailsFailure,
 	singleProductDetailsSuccess,
 	singleProductReviewsFailure,
-	singleProductReviewsSuccess, addSingleReviewFailure, addSingleReviewSuccess
+	singleProductReviewsSuccess, addSingleReviewFailure,
 } from '../actionCreator/products';
-import {addToCartSuccess} from "../actionCreator/shoppingCart";
 
 export function* getProductsSaga(action) {
 	try {

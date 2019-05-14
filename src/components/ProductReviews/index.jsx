@@ -6,7 +6,6 @@ import ProductDetails from "../../views/SingleProduct";
 
 export class ProductReviews extends Component {
   renderSingleProductReview (reviews) {
-    console.log(this.props);
     if (reviews.length > 0) {
       return reviews.map((review, index) => {
         return <SingleProductReview key={index} review={review} />

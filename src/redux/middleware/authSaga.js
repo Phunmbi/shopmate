@@ -41,7 +41,6 @@ export function* signInSaga ( action ) {
     const {query: {Email, Password}, callback} = action;
     const response = yield call( AuthAPI.signin, {Email, Password} );
 
-    console.log( response );
     // Persist user details
     localStorage.setItem( "accessToken", response.data.accessToken );
     localStorage.setItem( "isAuthenticated", 'true' );
@@ -67,7 +66,6 @@ export function* getUserSaga ( ) {
   try {
     const response = yield call( AuthAPI.getUser );
     
-    console.log( response );
     // Confirm user authorization status
     localStorage.setItem( "isAuthenticated", 'true' );
     

@@ -181,7 +181,7 @@ export class Homepage extends Component {
 		const { history } = this.props;
 		const loggedIn = localStorage.getItem("isAuthenticated");
 		if (loggedIn) {
-			history.push('/checkout')
+			return history.push('/checkout')
 		}
 		toaster.error('Please sign into your account first');
 		this.handleDisplayModal('signin');

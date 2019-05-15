@@ -20,6 +20,10 @@ import {
   watchSignIn,
   watchGetUser,
 } from './authSaga';
+import {
+  watchGetShippingCost,
+  watchGetShippingRegions
+} from './checkoutSaga';
 
 
 function* rootSaga () {
@@ -38,7 +42,9 @@ function* rootSaga () {
     watchRetrieveCart(),
     watchRemoveFromCart(),
     watchUpdateCart(),
-    watchAddReview()
+    watchAddReview(),
+    watchGetShippingCost(),
+    watchGetShippingRegions()
   ])
 }
 

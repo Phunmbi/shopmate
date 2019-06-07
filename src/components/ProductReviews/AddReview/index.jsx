@@ -52,6 +52,7 @@ export class AddReview extends Component {
       if (eachRating > ratingValue && eachRating <= 5) {
         newRatings[eachRating] = "silver"
       }
+      return newRatings[eachRating];
     });
     
   

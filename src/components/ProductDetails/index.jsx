@@ -28,13 +28,15 @@ class ProductDetails extends Component {
     currentImage: null
   };
   
-  componentWillMount() {
-    const {productDetails} = this.props;
-    
-    this.setState({
-      ...this.state,
-      currentImage: productDetails.image
-    });
+    componentDidMount () {
+    const { productDetails, singleProductLoading } = this.props;
+
+    if (singleProductLoading === false)  {
+      this.setState({
+        ...this.state,
+        currentImage: productDetails.image
+      });
+    }
   }
   
   renderRatings = () => {
@@ -55,7 +57,7 @@ class ProductDetails extends Component {
   render() {
     const {
       productDetails,
-      loading,
+      singleProductLoading,
       quantity,
       increaseQuantity,
       reduceQuantity,
@@ -65,12 +67,15 @@ class ProductDetails extends Component {
       colourSelector,
       handleAddToCart
     } = this.props;
-    
+
+
+    // console.log('productDetails ========>>', this.state, this.props);
+
     const srcImage = image => `https://backendapi.turing.com/images/products/${image}`;
     const sizes = ['XS', 'S', 'M', 'L', 'XL', 'XXL'];
     return (
       <Fragment>
-        { loading ?
+        { singleProductLoading ?
           <Loading/> :
           (
             <div className="product-details__main">

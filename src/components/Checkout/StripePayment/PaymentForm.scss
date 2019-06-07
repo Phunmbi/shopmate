@@ -1,0 +1,34 @@
+.paymentForm {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  &-action{
+    display: flex;
+    flex-direction: column;
+    align-self: flex-start;
+    width: 100%;
+  }
+
+  &-buttons {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    button {
+      width: 80px;
+      height: 30px;
+      color: white;
+      background-color: var(--red-pink);
+      border: none;
+      font-weight: bold;
+      border-radius: 20px;
+      outline: none;
+      cursor: pointer;
+    }
+    .payment-loading{
+      background-color: rgba(246, 47, 94, 0.18) !important;
+
+    }
+  }
+}

@@ -170,6 +170,7 @@ export class Homepage extends Component {
 		cart.map((eachItem) => {
 			return total += parseFloat(eachItem.subtotal);
 		});
+    localStorage.setItem('cartTotal', total.toFixed(2));
 		return total.toFixed(2);
 	};
 	
@@ -181,7 +182,7 @@ export class Homepage extends Component {
 		const { history } = this.props;
 		const loggedIn = localStorage.getItem("isAuthenticated");
 		if (loggedIn) {
-			history.push('/checkout')
+			return history.push('/checkout')
 		}
 		toaster.error('Please sign into your account first');
 		this.handleDisplayModal('signin');

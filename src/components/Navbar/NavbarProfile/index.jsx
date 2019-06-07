@@ -60,7 +60,7 @@ export default class index extends Component {
 							<p onClick={() => this.handleResetSearch()}>x</p>
 						</div>
 						{localStorage.isAuthenticated ? (<div className="navbar-profile__user">
-							<img onClick={() => this.handleDropDown()} src={UserProfile} src={UserProfile} alt="Profile" />
+							<img onClick={() => this.handleDropDown()} src={UserProfile} alt="Profile" />
 						</div>) : null}
 					</div>
 					{this.state.displayDropDown ? <div className="navbar-dropdown__container">{this.renderDropDown()}</div> : null}

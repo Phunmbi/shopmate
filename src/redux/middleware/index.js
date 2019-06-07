@@ -20,6 +20,12 @@ import {
   watchSignIn,
   watchGetUser,
 } from './authSaga';
+import {
+  watchGetShippingCost,
+  watchGetShippingRegions,
+  watchCreateOrder,
+  watchStripeCharge
+} from './checkoutSaga';
 
 
 function* rootSaga () {
@@ -38,7 +44,11 @@ function* rootSaga () {
     watchRetrieveCart(),
     watchRemoveFromCart(),
     watchUpdateCart(),
-    watchAddReview()
+    watchAddReview(),
+    watchGetShippingCost(),
+    watchGetShippingRegions(),
+    watchCreateOrder(),
+    watchStripeCharge()
   ])
 }
 

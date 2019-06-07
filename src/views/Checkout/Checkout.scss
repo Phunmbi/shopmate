@@ -1,20 +1,33 @@
 .checkout{
   background-color: #EFEFEF;
+  height: 100vh;
 
   header, .product-details, .product-reviews, .footer{
     margin: 0 auto;
     width: 100vw;
   }
 
-  .product-details{
-    height: 625px;
-  }
-
-  .product-reviews{
-    min-height: 743px;
-  }
-
   .footer{
     background-color: #2e2e2e;
+  }
+
+  .stripe-payment{
+    width: 100%;
+    height: 67vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    &__main {
+      width: 1000px;
+      height: 63vh;
+      padding: 25px 20px;
+      display: flex;
+      justify-content: space-between;
+      flex-direction: column;
+      align-items: flex-start;
+      margin: 20px 0;
+      border-radius: 8px;
+      background-color: var(--white-two);
+    }
   }
 }

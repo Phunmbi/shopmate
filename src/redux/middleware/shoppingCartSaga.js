@@ -56,7 +56,7 @@ export function* retrieveCartSaga ( action ) {
     const { cart_id } = action;
     const response = yield call( shoppingCartAPI.retrieveCart, cart_id );
     localStorage.setItem("addedToCart", "true");
-    yield put( retrieveCartSuccess( response.data[0] ) );
+    yield put( retrieveCartSuccess( response.data ) );
   } catch ( error ) {
     toast.error( 'Failed to retrieve cart' );
     yield put( retrieveCartFailure( error ) );

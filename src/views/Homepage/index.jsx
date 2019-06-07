@@ -170,6 +170,7 @@ export class Homepage extends Component {
 		cart.map((eachItem) => {
 			return total += parseFloat(eachItem.subtotal);
 		});
+    localStorage.setItem('cartTotal', total.toFixed(2));
 		return total.toFixed(2);
 	};
 	

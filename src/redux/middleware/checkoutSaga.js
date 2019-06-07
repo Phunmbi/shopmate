@@ -1,12 +1,14 @@
 import {call, put, takeLatest} from 'redux-saga/effects';
 import toast from 'toastr';
 import CheckoutAPI from '../../services/checkout';
-import {GET_SHIPPING_COSTS, GET_SHIPPING_REGIONS} from "../constants/actionTypes";
+import {CREATE_ORDER, GET_SHIPPING_COSTS, GET_SHIPPING_REGIONS, STRIPE_CHARGE} from "../constants/actionTypes";
 import {
+  createOrderFailure,
+  createOrderSuccess,
   getShippingCostFailure,
   getShippingCostSuccess,
   getShippingRegionsFailure,
-  getShippingRegionsSuccess
+  getShippingRegionsSuccess, stripeChargeFailure, stripeChargeSuccess
 } from "../actionCreator/checkout";
 
 export function* getShippingRegionsSaga (  ) {
@@ -15,7 +17,7 @@ export function* getShippingRegionsSaga (  ) {
     
     yield put( getShippingRegionsSuccess( response.data ) );
   } catch ( error ) {
-    toast.error('Error signing up user');
+    toast.error('Error retrieving shipping regions');
     yield put( getShippingRegionsFailure( error ) );
   }
 }
@@ -26,16 +28,47 @@ export function* watchGetShippingRegions () {
 
 export function* getShippingCostSaga ( action ) {
   try {
-    const {shippingId} = action;
-    const response = yield call( CheckoutAPI.getShippingCost, { shippingId} );
-    
+    const {shipping_region_id} = action;
+    const response = yield call( CheckoutAPI.getShippingCost, { shipping_region_id} );
     yield put( getShippingCostSuccess( response.data ) );
   } catch ( error ) {
-    toast.error( 'Error signing in user' );
+    toast.error( 'Error retrieving shipping costs' );
     yield put( getShippingCostFailure( error ) );
   }
 }
 
 export function* watchGetShippingCost () {
   yield takeLatest( GET_SHIPPING_COSTS, getShippingCostSaga );
+}
+
+export function* createOrderSaga ( action ) {
+  try {
+    const {cart_id, shipping_id} = action;
+    const response = yield call( CheckoutAPI.createOrder, { cart_id, shipping_id} );
+    yield put( createOrderSuccess( response.data ) );
+  } catch ( error ) {
+    toast.error( 'Error creating this order' );
+    yield put( createOrderFailure( error ) );
+  }
+}
+
+export function* watchCreateOrder () {
+  yield takeLatest( CREATE_ORDER, createOrderSaga );
+}
+
+export function* stripeChargeSaga ( action ) {
+  try {
+    const {stripeToken, order_id, description, amount, history} = action;
+    const response = yield call( CheckoutAPI.stripeCharge, { stripeToken, order_id, description, amount } );
+    yield put( stripeChargeSuccess( response.data ) );
+    toast.success('Your payment has been processed successfully');
+    yield history.push("/");
+  } catch ( error ) {
+    toast.error( 'Error processing your payment' );
+    yield put( stripeChargeFailure( error ) );
+  }
+}
+
+export function* watchStripeCharge () {
+  yield takeLatest( STRIPE_CHARGE, stripeChargeSaga );
 }

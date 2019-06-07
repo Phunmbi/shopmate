@@ -22,7 +22,9 @@ import {
 } from './authSaga';
 import {
   watchGetShippingCost,
-  watchGetShippingRegions
+  watchGetShippingRegions,
+  watchCreateOrder,
+  watchStripeCharge
 } from './checkoutSaga';
 
 
@@ -44,7 +46,9 @@ function* rootSaga () {
     watchUpdateCart(),
     watchAddReview(),
     watchGetShippingCost(),
-    watchGetShippingRegions()
+    watchGetShippingRegions(),
+    watchCreateOrder(),
+    watchStripeCharge()
   ])
 }
 

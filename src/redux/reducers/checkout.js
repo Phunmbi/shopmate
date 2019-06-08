@@ -75,7 +75,8 @@ const checkout = (state = initialState, action) => {
         ...state,
         creatingOrder: false,
         error: true,
-      };case types.STRIPE_CHARGE:
+      };
+    case types.STRIPE_CHARGE:
       return {
         ...state,
         creatingStripeCharge: true,

@@ -9,7 +9,8 @@ import {
   CREATE_ORDER_SUCCESS,
   CREATE_ORDER_FAILURE,
   STRIPE_CHARGE,
-  STRIPE_CHARGE_SUCCESS, STRIPE_CHARGE_FAILURE,
+  STRIPE_CHARGE_SUCCESS,
+  STRIPE_CHARGE_FAILURE,
 } from '../constants/actionTypes';
 
 export const getShippingRegions = () => {

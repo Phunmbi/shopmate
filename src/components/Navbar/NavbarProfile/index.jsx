@@ -11,8 +11,10 @@ export default class index extends Component {
 	};
 	
 	renderDropDown = () => {
+	  const { history } = this.props;
 		return (
 			<div className="navbar-dropdown__main">
+        <p onClick={() => history.push('/profile')}> Profile</p>
 				<p onClick={() => this.handleSignOut()}>Sign out</p>
 			</div>
 		)

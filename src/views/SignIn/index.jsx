@@ -44,7 +44,7 @@ export class SignUp extends Component {
 		} );
 	};
 
-	signinForm = () => {
+	signInForm = () => {
 		const { authLoading } = this.props;
 		const { errors } = this.state;
 		return (
@@ -101,7 +101,7 @@ export class SignUp extends Component {
 					<Modal
 						title="Sign In"
 						height="220px"
-						childForm={this.signinForm}
+						childForm={this.signInForm}
 						additionalOptions={this.additionalOptions}
 						handleCloseModal={handleCloseModal}
 						handleDisplayModal={handleDisplayModal}

@@ -19,6 +19,7 @@ import {
   watchSignUp,
   watchSignIn,
   watchGetUser,
+  watchUpdateUser
 } from './authSaga';
 import {
   watchGetShippingCost,
@@ -48,7 +49,8 @@ function* rootSaga () {
     watchGetShippingCost(),
     watchGetShippingRegions(),
     watchCreateOrder(),
-    watchStripeCharge()
+    watchStripeCharge(),
+    watchUpdateUser()
   ])
 }
 

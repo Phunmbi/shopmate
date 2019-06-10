@@ -9,8 +9,10 @@ class NavBarCollapse extends Component {
   };
   
   renderDropDown = () => {
+    const { history } = this.props;
     return (
       <div className="dropdown-main">
+        <p onClick={() => history.push('/profile')}> Profile</p>
         <p onClick={() => this.handleSignOut()}>Sign out</p>
       </div>
     )

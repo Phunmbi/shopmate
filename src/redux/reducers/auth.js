@@ -12,6 +12,7 @@ const auth = (state = initialState, action) => {
 		case types.SIGN_UP:
 		case types.SIGN_IN:
 		case types.GET_USER:
+    case types.UPDATE_USER:
 			return {
         ...state,
         loading: true,
@@ -19,7 +20,6 @@ const auth = (state = initialState, action) => {
 			};
 		case types.SIGN_UP_SUCCESS:
 		case types.SIGN_IN_SUCCESS:
-		case types.GET_USER_SUCCESS:
 			return {
         ...state,
         loading: false,
@@ -27,9 +27,18 @@ const auth = (state = initialState, action) => {
 				isAuthenticated: true,
 				error: false,
 			};
+    case types.UPDATE_USER_SUCCESS:
+    case types.GET_USER_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        user: {...action.payload},
+        error: false,
+      };
 		case types.SIGN_UP_FAILURE:
 		case types.SIGN_IN_FAILURE:
 		case types.GET_USER_FAILURE:
+    case types.UPDATE_USER_FAILURE:
 			return {
 				...state,
 				loading: false,

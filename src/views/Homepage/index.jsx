@@ -341,7 +341,6 @@ const mapStateToProps = ({ products,auth, shoppingCart }) => ({
 });
 
 const mapDispatchToProps = {
-	getProducts,
 	signUp,
 	signIn,
 	filterAllDepartments,
@@ -350,7 +349,8 @@ const mapDispatchToProps = {
 	getCartId,
 	retrieveCart,
 	removeFromCart,
-	updateCart
+	updateCart,
+  getProducts
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Homepage);

@@ -95,10 +95,10 @@
   position: absolute;
   .navbar-dropdown__main{
     position: relative;
-    top: 7vh;
+    top: 8vh;
     left: 29vw;
     width: 100px;
-    height: 30px;
+    height: 60px;
     margin: 0;
     background-color: #2e2e2e;
     text-align: center;
@@ -110,7 +110,8 @@
     color: #e2e2e2;
     cursor: pointer;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-around;
     align-items: center;
     p{
       margin: 0;

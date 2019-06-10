@@ -1,0 +1,81 @@
+.profile-form{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  margin: 30px auto;
+  form {
+    width: 78%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    align-content: center;
+
+    .profile-form__location, .profile-form__shipping{
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+      input, select{
+        width: 48%;
+      }
+    }
+
+    .profile-form__location {
+      input {
+        width: 31%;
+      }
+    }
+    input, select{
+      width: 100%;
+      height: 40px;
+      border: 1px solid #e1e1e1;
+      border-radius: 6px;
+      text-indent: 10px;
+      outline: none;
+      font-size: 14px;
+      background-color: var(--white-two);
+    }
+
+    select {
+      height: 44px;
+      color: #686868;
+    }
+    
+    input[disabled]{
+      background-color: var(--greyish);
+      cursor: not-allowed;
+    }
+
+    input[type=submit], .submitButton{
+      cursor: pointer;
+      width: 200px;
+      height: 44px;
+      border-radius: 100px;
+      border: none;
+      background-color: var(--red-pink);
+      font-size: 14px;
+      font-weight: bold;
+      font-style: normal;
+      font-stretch: normal;
+      line-height: 2;
+      letter-spacing: normal;
+      text-align: center;
+      outline: none;
+      color: var(--white-two);
+      margin-bottom: 30px;
+      :focus{
+        border: none;
+      }
+    }
+  }
+}
+
+.display-errors{
+  margin: 0;
+  padding: 2px;
+  color: red;
+  font-size: 10px;
+}

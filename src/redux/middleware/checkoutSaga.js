@@ -46,6 +46,16 @@ export function* createOrderSaga ( action ) {
     const {cart_id, shipping_id} = action;
     const response = yield call( CheckoutAPI.createOrder, { cart_id, shipping_id} );
     yield put( createOrderSuccess( response.data ) );
+
+    // Garbage collect and clean local storage while retaining user's login details
+    const accessToken = localStorage.getItem("accessToken");
+    const name = localStorage.getItem("name");
+    const cartTotal = localStorage.getItem("cartTotal");
+    localStorage.clear();
+    localStorage.setItem("accessToken", accessToken);
+    localStorage.setItem("isAuthenticated", "true");
+    localStorage.setItem("name", name);
+    localStorage.setItem("cartTotal", cartTotal);
   } catch ( error ) {
     toast.error( 'Error creating this order' );
     yield put( createOrderFailure( error ) );

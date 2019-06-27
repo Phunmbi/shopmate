@@ -1,11 +1,11 @@
 import Checkout from '../views/Checkout';
-import Catalogue from '../views/Catalogue';
 import SingleProduct from '../views/SingleProduct';
+import Profile from '../views/Profile';
 
 const routes = {
 	'/checkout': [Checkout],
-	'/catalogue': [Catalogue],
-	'/product/:productId': [SingleProduct]
+	'/product/:productId': [SingleProduct],
+  '/profile': [Profile]
 };
 
 export default routes;

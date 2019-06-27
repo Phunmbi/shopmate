@@ -1,13 +1,13 @@
 import {call, put, takeLatest} from 'redux-saga/effects';
 import toast from 'toastr';
-import {SIGN_UP, SIGN_IN, GET_USER} from '../constants/actionTypes'
+import {SIGN_UP, SIGN_IN, GET_USER, UPDATE_USER} from '../constants/actionTypes'
 import AuthAPI from '../../services/auth';
 import {
   signUpSuccess,
   signUpFailure,
   signInSuccess,
   signInFailure,
-  getUserSuccess, getUserFailure
+  getUserSuccess, getUserFailure, updateUserSuccess, updateUserFailure
 } from '../actionCreator/auth';
 
 export function* signUpSaga ( action ) {
@@ -41,7 +41,6 @@ export function* signInSaga ( action ) {
     const {query: {Email, Password}, callback} = action;
     const response = yield call( AuthAPI.signin, {Email, Password} );
 
-    console.log( response );
     // Persist user details
     localStorage.setItem( "accessToken", response.data.accessToken );
     localStorage.setItem( "isAuthenticated", 'true' );
@@ -67,10 +66,9 @@ export function* getUserSaga ( ) {
   try {
     const response = yield call( AuthAPI.getUser );
     
-    console.log( response );
     // Confirm user authorization status
     localStorage.setItem( "isAuthenticated", 'true' );
-    
+
     yield put( getUserSuccess( response.data ) );
   } catch ( error ) {
     localStorage.removeItem( "accessToken" );
@@ -80,4 +78,25 @@ export function* getUserSaga ( ) {
 
 export function* watchGetUser () {
   yield takeLatest( GET_USER, getUserSaga );
+}
+
+export function* updateUserSaga ( action ) {
+  try {
+    const { address_1, address_2, city, region, country, postal_code, shipping_region_id, history } = action;
+
+    const response = yield call(AuthAPI.updateUser, {
+      address_1, address_2, city, region, country, postal_code, shipping_region_id
+    });
+
+    yield put( updateUserSuccess( response.data ) );
+    toast.success("Successfully updated user's profile");
+    history.push('/');
+  } catch ( error ) {
+    toast.error("Failed to update user's profile");
+    yield put( updateUserFailure( error ) );
+  }
+}
+
+export function* watchUpdateUser () {
+  yield takeLatest( UPDATE_USER, updateUserSaga );
 }

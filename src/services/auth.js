@@ -20,6 +20,29 @@ export default class AuthAPI {
   }
   
   static getUser() {
-    return axios.get(`${BaseAuthorization.baseURL}/customer`, {headers: BaseAuthorization.token})
+    return axios.get(`${BaseAuthorization.baseURL}/customer`, {
+      headers: BaseAuthorization.token,
+    })
+  }
+
+  static updateUser(action) {
+    const {
+      address_1,
+      address_2,
+      city,
+      region,
+      country,
+      postal_code,
+      shipping_region_id
+    } = action;
+    return axios.put(`${BaseAuthorization.baseURL}/customers/address`, {
+      address_1,
+      address_2,
+      city,
+      region,
+      country,
+      postal_code,
+      shipping_region_id
+    }, {headers: BaseAuthorization.token})
   }
 }

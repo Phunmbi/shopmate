@@ -1,0 +1,582 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ConnectedHomePage /> renders appropriately 1`] = `
+<Provider
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+>
+  <MemoryRouter
+    key="keyed"
+  >
+    <Router
+      history={
+        Object {
+          "action": "POP",
+          "block": [Function],
+          "canGo": [Function],
+          "createHref": [Function],
+          "entries": Array [
+            Object {
+              "hash": "",
+              "key": "aa05a9",
+              "pathname": "/",
+              "search": "",
+              "state": undefined,
+            },
+          ],
+          "go": [Function],
+          "goBack": [Function],
+          "goForward": [Function],
+          "index": 0,
+          "length": 1,
+          "listen": [Function],
+          "location": Object {
+            "hash": "",
+            "key": "aa05a9",
+            "pathname": "/",
+            "search": "",
+            "state": undefined,
+          },
+          "push": [Function],
+          "replace": [Function],
+        }
+      }
+    >
+      <Connect(Profile)
+        allProducts={Array []}
+        cart={
+          Array [
+            Object {
+              "attributes": "Blue, S",
+              "item_id": 1,
+              "name": "adeniyi",
+              "quantity": 3,
+            },
+            Object {
+              "attributes": "Purple, S",
+              "item_id": 2,
+              "name": "victor",
+              "quantity": 4,
+            },
+          ]
+        }
+        cartLoading={false}
+        getShippingRegions={
+          [MockFunction] {
+            "calls": Array [
+              Array [],
+            ],
+            "results": Array [
+              Object {
+                "isThrow": false,
+                "value": undefined,
+              },
+            ],
+          }
+        }
+        getUser={
+          [MockFunction] {
+            "calls": Array [
+              Array [],
+            ],
+            "results": Array [
+              Object {
+                "isThrow": false,
+                "value": undefined,
+              },
+            ],
+          }
+        }
+        history={
+          Object {
+            "push": [MockFunction],
+          }
+        }
+        productDetails={
+          Object {
+            "image": "image.png",
+            "image_2": "image2.png",
+            "name": "nigerian",
+            "product_id": 1,
+            "subtotal": 455,
+            "thumbnail": "thumbnail.png",
+          }
+        }
+        removeFromCart={[MockFunction]}
+        retrieveCart={
+          [MockFunction] {
+            "calls": Array [
+              Array [
+                null,
+              ],
+            ],
+            "results": Array [
+              Object {
+                "isThrow": false,
+                "value": undefined,
+              },
+            ],
+          }
+        }
+        reviews={
+          Array [
+            Object {
+              "name": "named",
+              "rating": 4,
+              "review": "Terrible product",
+            },
+          ]
+        }
+        shippingRegions={
+          Array [
+            Object {
+              "shipping_region": "Canada/Us",
+              "shipping_region_id": 2,
+            },
+            Object {
+              "shipping_region": "Rest of the World",
+              "shipping_region_id": 1,
+            },
+          ]
+        }
+        updateCart={[MockFunction]}
+        updateUser={[MockFunction]}
+      >
+        <Profile
+          allProducts={
+            Array [
+              Object {
+                "discounted_price": "0.00",
+                "name": "altica",
+                "product_id": 12,
+              },
+              Object {
+                "name": "italia",
+                "product_id": 19,
+              },
+              Object {
+                "name": "french",
+                "product_id": 17,
+              },
+              Object {
+                "name": "nigerian",
+                "product_id": 15,
+              },
+              Object {
+                "name": "christmas cap",
+                "product_id": 14,
+              },
+            ]
+          }
+          authLoading={false}
+          cart={
+            Array [
+              Object {
+                "attributes": "Blue, S",
+                "item_id": 1,
+                "name": "adeniyi",
+                "quantity": 3,
+              },
+              Object {
+                "attributes": "Purple, S",
+                "item_id": 2,
+                "name": "victor",
+                "quantity": 4,
+              },
+            ]
+          }
+          cartLoading={false}
+          cart_Id={4}
+          getShippingRegions={[Function]}
+          getUser={[Function]}
+          history={
+            Object {
+              "push": [MockFunction],
+            }
+          }
+          productDetails={
+            Object {
+              "image": "image.png",
+              "image_2": "image2.png",
+              "name": "nigerian",
+              "product_id": 1,
+              "subtotal": 455,
+              "thumbnail": "thumbnail.png",
+            }
+          }
+          productsCount={5}
+          productsLoading={false}
+          productsResponse={
+            Object {
+              "count": 5,
+              "loading": false,
+              "products": Array [
+                Object {
+                  "discounted_price": "0.00",
+                  "name": "altica",
+                  "product_id": 12,
+                },
+                Object {
+                  "name": "italia",
+                  "product_id": 19,
+                },
+                Object {
+                  "name": "french",
+                  "product_id": 17,
+                },
+                Object {
+                  "name": "nigerian",
+                  "product_id": 15,
+                },
+                Object {
+                  "name": "christmas cap",
+                  "product_id": 14,
+                },
+              ],
+              "reviews": Array [
+                Object {
+                  "name": "named",
+                  "rating": 4,
+                  "review": "Terrible product",
+                },
+              ],
+              "reviewsLoading": false,
+              "singleProductDetails": Object {
+                "image": "image.png",
+                "image_2": "image2.png",
+                "name": "nigerian",
+                "product_id": 1,
+                "subtotal": 455,
+                "thumbnail": "thumbnail.png",
+              },
+              "singleProductLoading": false,
+            }
+          }
+          removeFromCart={[Function]}
+          retrieveCart={[Function]}
+          reviews={
+            Array [
+              Object {
+                "name": "named",
+                "rating": 4,
+                "review": "Terrible product",
+              },
+            ]
+          }
+          shippingRegions={
+            Array [
+              Object {
+                "shipping_region": "Canada/Us",
+                "shipping_region_id": 2,
+              },
+              Object {
+                "shipping_region": "Rest of the World",
+                "shipping_region_id": 1,
+              },
+            ]
+          }
+          updateCart={[Function]}
+          updateUser={[Function]}
+          user={
+            Object {
+              "name": "Name",
+            }
+          }
+        >
+          <div
+            className="homepage"
+          >
+            <header
+              className="navbar"
+            >
+              <NavbarHome
+                bagTotal={[Function]}
+                cartCount={2}
+                handleDisplayModal={[Function]}
+                retrieveCart={[Function]}
+              >
+                <div
+                  className="navbar-home"
+                >
+                  <div
+                    className="navbar-home__main"
+                  >
+                    <div
+                      className="navbar-home__action .Text-Style-2"
+                    >
+                      <h3
+                        className="navbar-home__action1"
+                      >
+                        Hi! 
+                      </h3>
+                      <h3
+                        className="navbar-home__action2"
+                        onClick={[Function]}
+                      >
+                        Sign in
+                      </h3>
+                      <h3
+                        className="navbar-home__action1"
+                      >
+                        or 
+                      </h3>
+                      <h3
+                        className="navbar-home__action2"
+                        onClick={[Function]}
+                      >
+                        Register
+                      </h3>
+                    </div>
+                    <div
+                      className="navbar-home__cart"
+                      onClick={[Function]}
+                    >
+                      <Cart
+                        cartCount={2}
+                      >
+                        <div
+                          className="cart-main"
+                        >
+                          <img
+                            alt="Checkout Bag"
+                            src="cart-white.svg"
+                          />
+                          <div
+                            className="cart-main__count"
+                          >
+                            2
+                          </div>
+                        </div>
+                      </Cart>
+                      <div>
+                        Your Bag: £
+                        NaN
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </NavbarHome>
+              <NavBarCollapse
+                history={
+                  Object {
+                    "push": [MockFunction],
+                  }
+                }
+              >
+                <div
+                  className="navbar-collapse"
+                >
+                  <div
+                    className="navbar-collapse__container"
+                  >
+                    <h3
+                      onClick={[Function]}
+                    >
+                      SHOPMATE
+                    </h3>
+                  </div>
+                </div>
+              </NavBarCollapse>
+            </header>
+            <div
+              className="profile"
+            >
+              <ProfileForm
+                getShippingRegions={[Function]}
+                getUser={[Function]}
+                history={
+                  Object {
+                    "push": [MockFunction],
+                  }
+                }
+                shippingRegions={
+                  Array [
+                    Object {
+                      "shipping_region": "Canada/Us",
+                      "shipping_region_id": 2,
+                    },
+                    Object {
+                      "shipping_region": "Rest of the World",
+                      "shipping_region_id": 1,
+                    },
+                  ]
+                }
+                updateUser={[Function]}
+                userDetails={
+                  Object {
+                    "name": "Name",
+                  }
+                }
+              >
+                <div
+                  className="profile-form"
+                >
+                  <form
+                    onSubmit={[Function]}
+                  >
+                    <input
+                      disabled={true}
+                      placeholder="Name"
+                      type="text"
+                      value="named"
+                    />
+                    <input
+                      onChange={[Function]}
+                      placeholder="Address 1"
+                      title="Address 1"
+                      type="text"
+                    />
+                    <input
+                      onChange={[Function]}
+                      placeholder="Address 2"
+                      title="Address 2"
+                      type="text"
+                    />
+                    <div
+                      className="profile-form__location"
+                    >
+                      <input
+                        onChange={[Function]}
+                        placeholder="City"
+                        title="City"
+                        type="text"
+                      />
+                      <input
+                        onChange={[Function]}
+                        placeholder="Region"
+                        title="Region"
+                        type="text"
+                      />
+                      <input
+                        onChange={[Function]}
+                        placeholder="Country"
+                        title="Country"
+                        type="text"
+                      />
+                    </div>
+                    <div
+                      className="profile-form__shipping"
+                    >
+                      <input
+                        onChange={[Function]}
+                        placeholder="Postal Code"
+                        title="Postal Code"
+                        type="text"
+                      />
+                      <select
+                        name="shipping-region"
+                        onChange={[Function]}
+                      >
+                        <option
+                          key="2"
+                          label="Canada/Us"
+                          value={2}
+                        >
+                          Canada/Us
+                        </option>
+                        <option
+                          key="1"
+                          label="Rest of the World"
+                          value={1}
+                        >
+                          Rest of the World
+                        </option>
+                      </select>
+                    </div>
+                    <input
+                      type="submit"
+                      value="Submit"
+                    />
+                  </form>
+                </div>
+              </ProfileForm>
+            </div>
+            <footer
+              className="footer"
+            >
+              <Footer>
+                <div
+                  className="footer-main"
+                >
+                  <div
+                    className="footer-container"
+                  >
+                    <div
+                      className="footer-container__categories"
+                    >
+                      <h3>
+                        Women
+                      </h3>
+                      <h3>
+                        Men
+                      </h3>
+                      <h3>
+                        Kids
+                      </h3>
+                      <h3>
+                        Shoes
+                      </h3>
+                      <h3>
+                        Brands
+                      </h3>
+                    </div>
+                    <div
+                      className="footer-container__social"
+                    >
+                      <div
+                        className="footer-container__socialIcons"
+                      >
+                        <img
+                          alt="instagram"
+                          src="instagramIcon.svg"
+                        />
+                      </div>
+                      <div
+                        className="footer-container__socialIcons"
+                      >
+                        <img
+                          alt="pinterest"
+                          src="pinterestIcon.svg"
+                        />
+                      </div>
+                      <div
+                        className="footer-container__socialIcons"
+                      >
+                        <img
+                          alt="twitter"
+                          src="twitterIcon.svg"
+                        />
+                      </div>
+                      <div
+                        className="footer-container__socialIcons"
+                      >
+                        <img
+                          alt="facebook"
+                          src="facebookIcon.svg"
+                        />
+                      </div>
+                    </div>
+                    <div
+                      className="footer-container__information"
+                    >
+                      © shopmate Ltd • Contact • Privacy Policy
+                    </div>
+                  </div>
+                </div>
+              </Footer>
+            </footer>
+          </div>
+        </Profile>
+      </Connect(Profile)>
+    </Router>
+  </MemoryRouter>
+</Provider>
+`;

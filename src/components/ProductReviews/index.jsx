@@ -2,11 +2,10 @@ import React, {Component, Fragment} from 'react';
 import SingleProductReview from './SingleProductReview/index';
 import AddReview from './AddReview/index';
 import './ProductReviews.scss';
-import ProductDetails from "../../views/SingleProduct";
+import Loading from "../Loading";
 
 export class ProductReviews extends Component {
   renderSingleProductReview (reviews) {
-    console.log(this.props);
     if (reviews.length > 0) {
       return reviews.map((review, index) => {
         return <SingleProductReview key={index} review={review} />
@@ -23,11 +22,12 @@ export class ProductReviews extends Component {
     const {
       reviews,
       handleAddSingleReview,
-      productDetails
+      productDetails,
     } = this.props;
     return (
       <Fragment>
-        <div className="product-reviews__main">
+        {
+          <div className="product-reviews__main">
           <div className="product-reviews__container">
             <div className="product-reviews__width">
               <div className="product-reviews__reviewsSection">
@@ -44,7 +44,8 @@ export class ProductReviews extends Component {
               </div>
             </div>
           </div>
-        </div>
+          </div>
+        }
       </Fragment>
     );
   }

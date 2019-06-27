@@ -4,15 +4,17 @@ import UserProfile from '../../../images/profile-picture.svg'
 import Search from '../../../images/search.svg';
 import './NavbarProfile.scss';
 
-export default class index extends Component {
+export default class NavbarProfile extends Component {
 	state = {
 		searchValue: "",
 		displayDropDown: false
 	};
 	
 	renderDropDown = () => {
+	  const { history } = this.props;
 		return (
 			<div className="navbar-dropdown__main">
+        <p onClick={() => history.push('/profile')}> Profile</p>
 				<p onClick={() => this.handleSignOut()}>Sign out</p>
 			</div>
 		)
@@ -60,7 +62,7 @@ export default class index extends Component {
 							<p onClick={() => this.handleResetSearch()}>x</p>
 						</div>
 						{localStorage.isAuthenticated ? (<div className="navbar-profile__user">
-							<img onClick={() => this.handleDropDown()} src={UserProfile} src={UserProfile} alt="Profile" />
+							<img onClick={() => this.handleDropDown()} src={UserProfile} alt="Profile" />
 						</div>) : null}
 					</div>
 					{this.state.displayDropDown ? <div className="navbar-dropdown__container">{this.renderDropDown()}</div> : null}

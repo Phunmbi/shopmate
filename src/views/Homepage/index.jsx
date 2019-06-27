@@ -20,7 +20,7 @@ import {
 	filterAllCategories,
 	searchAllProducts,
 } from '../../redux/actionCreator/products';
-import { getCartId, retrieveCart, removeFromCart, updateCart } from "../../redux/actionCreator/shoppingCart";
+import { addToCart, getCartId, retrieveCart, removeFromCart, updateCart } from "../../redux/actionCreator/shoppingCart";
 import {signUp, signIn} from '../../redux/actionCreator/auth';
 import CheckoutCart from "../CheckoutCart";
 
@@ -39,7 +39,7 @@ export class Homepage extends Component {
 		const selectedCategory = localStorage.getItem( "selectedCategoryID" );
 		const selectedDepartment = localStorage.getItem( 'selectedDepartmentID' );
 		const cartId = localStorage.getItem("cart_id");
-		
+
 		!cartId && getCartId();
 		
 		if ( filtering ) {
@@ -47,7 +47,7 @@ export class Homepage extends Component {
 				? this.filterAllCategories(selectedCategory)
 				: this.filterAllDepartments(selectedDepartment);
 		} else {
-			this.fetchProducts();
+			return this.fetchProducts();
 		}
 	}
 	
@@ -61,13 +61,13 @@ export class Homepage extends Component {
 		signIn(query, this.handleCloseModal);
 	};
 
-	fetchProducts = () => {
+	fetchProducts = async () => {
 		const { page } = this.state;
 		const { getProducts } = this.props;
-		getProducts(page, 6);
+		await getProducts(page, 6);
 	};
 
-	filterAllDepartments = ( deptId ) => {
+	filterAllDepartments = async ( deptId ) => {
 		const {page} = this.state;
 		const {filterAllDepartments} = this.props;
 
@@ -78,10 +78,10 @@ export class Homepage extends Component {
 		} );
 
 		localStorage.setItem( "filtering", true );
-		filterAllDepartments( deptId, { page, limit:6} );
+		await filterAllDepartments( deptId, { page, limit:6} );
 	};
 
-	filterAllCategories = ( categoryID ) => {
+	filterAllCategories = async ( categoryID ) => {
 		const {page} = this.state;
 		const {filterAllCategories } = this.props;
 
@@ -92,11 +92,11 @@ export class Homepage extends Component {
 		});
 
 		localStorage.setItem( "filtering", true );
-		filterAllCategories(categoryID, { page, limit: 6 });
+		await filterAllCategories(categoryID, { page, limit: 6 });
 	};
 
-	resetFilter = () => {
-		this.fetchProducts();
+	resetFilter = async () => {
+		await this.fetchProducts();
 		localStorage.removeItem( "selectedDepartment" );
 		localStorage.removeItem( 'selectedDepartmentID' );
 		localStorage.removeItem( 'filtering' );
@@ -152,16 +152,17 @@ export class Homepage extends Component {
 		});
 	};
 
+
 	handleSearch = (event, queryString) => {
 		event.preventDefault();
 		const { searchAllProducts } = this.props;
 		searchAllProducts(queryString, {page: 1, limit: 6});
 	};
 	
-	handleRetrieveCart = () => {
+	handleRetrieveCart = async () => {
 		const { retrieveCart } = this.props;
 		const cart_id = localStorage.getItem("cart_id");
-		retrieveCart(cart_id);
+		await retrieveCart(cart_id);
 	};
 	
 	calculateBagTotal = () => {
@@ -170,6 +171,7 @@ export class Homepage extends Component {
 		cart.map((eachItem) => {
 			return total += parseFloat(eachItem.subtotal);
 		});
+    localStorage.setItem('cartTotal', total.toFixed(2));
 		return total.toFixed(2);
 	};
 	
@@ -181,7 +183,7 @@ export class Homepage extends Component {
 		const { history } = this.props;
 		const loggedIn = localStorage.getItem("isAuthenticated");
 		if (loggedIn) {
-			history.push('/checkout')
+			return history.push('/checkout')
 		}
 		toaster.error('Please sign into your account first');
 		this.handleDisplayModal('signin');
@@ -194,7 +196,8 @@ export class Homepage extends Component {
 			history,
 			cart,
 			cartLoading,
-			removeFromCart
+			removeFromCart,
+      addToCart
 		} = this.props;
 		switch (openModal) {
 			case "signup":
@@ -230,6 +233,7 @@ export class Homepage extends Component {
 						removeFromCart={removeFromCart}
 						startCheckout={this.startCheckout}
 						handleUpdateCart={this.handleUpdateCart}
+            addToCart={addToCart}
 					/>
 				);
 			default:
@@ -309,7 +313,6 @@ export class Homepage extends Component {
 }
 
 Homepage.propTypes = {
-	getProducts: PropTypes.func,
 	allProducts: PropTypes.array,
 	productsLoading: PropTypes.bool,
 	productsCount: PropTypes.oneOfType( [
@@ -320,7 +323,6 @@ Homepage.propTypes = {
 };
 
 Homepage.defaultProps = {
-	getProducts: null,
 	allProducts: [],
 	productsCount: null,
 	productsLoading: false,
@@ -340,7 +342,6 @@ const mapStateToProps = ({ products,auth, shoppingCart }) => ({
 });
 
 const mapDispatchToProps = {
-	getProducts,
 	signUp,
 	signIn,
 	filterAllDepartments,
@@ -349,7 +350,9 @@ const mapDispatchToProps = {
 	getCartId,
 	retrieveCart,
 	removeFromCart,
-	updateCart
+	updateCart,
+  getProducts,
+  addToCart
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Homepage);

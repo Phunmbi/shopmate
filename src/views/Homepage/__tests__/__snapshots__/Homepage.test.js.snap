@@ -1,0 +1,583 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ConnectedHomePage /> renders appropriately 1`] = `
+<Homepage
+  addToCart={[MockFunction]}
+  allProducts={Array []}
+  cart={
+    Array [
+      Object {
+        "attributes": "Blue, S",
+        "item_id": 1,
+        "name": "adeniyi",
+        "quantity": 3,
+      },
+      Object {
+        "attributes": "Purple, S",
+        "item_id": 2,
+        "name": "victor",
+        "quantity": 4,
+      },
+    ]
+  }
+  cartLoading={false}
+  filterAllCategories={[MockFunction]}
+  filterAllDepartments={[MockFunction]}
+  getCartId={
+    [MockFunction] {
+      "calls": Array [
+        Array [],
+      ],
+      "results": Array [
+        Object {
+          "isThrow": false,
+          "value": undefined,
+        },
+      ],
+    }
+  }
+  getProducts={
+    [MockFunction] {
+      "calls": Array [
+        Array [
+          1,
+          6,
+        ],
+      ],
+      "results": Array [
+        Object {
+          "isThrow": false,
+          "value": undefined,
+        },
+      ],
+    }
+  }
+  handleSearch={[Function]}
+  history={
+    Object {
+      "push": [MockFunction],
+    }
+  }
+  productDetails={
+    Object {
+      "name": "nigerian",
+      "product_id": 1,
+      "subtotal": 455,
+    }
+  }
+  productsCount={null}
+  productsLoading={false}
+  productsResponse={null}
+  removeFromCart={[MockFunction]}
+  retrieveCart={
+    [MockFunction] {
+      "calls": Array [
+        Array [
+          null,
+        ],
+      ],
+      "results": Array [
+        Object {
+          "isThrow": false,
+          "value": undefined,
+        },
+      ],
+    }
+  }
+  searchAllProducts={[MockFunction]}
+  signIn={[MockFunction]}
+  signUp={[MockFunction]}
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+  updateCart={[MockFunction]}
+>
+  <div
+    className="homepage"
+  >
+    <header
+      className="navbar"
+    >
+      <NavbarHome
+        bagTotal={[Function]}
+        cartCount={2}
+        handleDisplayModal={[Function]}
+        retrieveCart={[Function]}
+      >
+        <div
+          className="navbar-home"
+        >
+          <div
+            className="navbar-home__main"
+          >
+            <div
+              className="navbar-home__action .Text-Style-2"
+            >
+              <h3
+                className="navbar-home__action1"
+              >
+                Hi! 
+              </h3>
+              <h3
+                className="navbar-home__action2"
+                onClick={[Function]}
+              >
+                Sign in
+              </h3>
+              <h3
+                className="navbar-home__action1"
+              >
+                or 
+              </h3>
+              <h3
+                className="navbar-home__action2"
+                onClick={[Function]}
+              >
+                Register
+              </h3>
+            </div>
+            <div
+              className="navbar-home__cart"
+              onClick={[Function]}
+            >
+              <Cart
+                cartCount={2}
+              >
+                <div
+                  className="cart-main"
+                >
+                  <img
+                    alt="Checkout Bag"
+                    src="cart-white.svg"
+                  />
+                  <div
+                    className="cart-main__count"
+                  >
+                    2
+                  </div>
+                </div>
+              </Cart>
+              <div>
+                Your Bag: £
+                NaN
+              </div>
+            </div>
+          </div>
+        </div>
+      </NavbarHome>
+      <NavbarProfile
+        handleSearch={[Function]}
+        history={
+          Object {
+            "push": [MockFunction],
+          }
+        }
+        resetSearch={[Function]}
+      >
+        <div
+          className="navbar-profile"
+        >
+          <div
+            className="navbar-profile__main"
+          >
+            <h1
+              className="navbar-profile__brand"
+            >
+              SHOPMATE
+            </h1>
+            <div
+              className="navbar-profile__search"
+            >
+              <img
+                alt="search"
+                src="search.svg"
+              />
+              <form
+                onSubmit={[Function]}
+              >
+                <input
+                  onChange={[Function]}
+                  placeholder="search anything"
+                  type="search"
+                  value=""
+                />
+              </form>
+              <p
+                onClick={[Function]}
+              >
+                x
+              </p>
+            </div>
+          </div>
+        </div>
+      </NavbarProfile>
+    </header>
+    <div
+      className="catalogue-section"
+    >
+      <Hero>
+        <div
+          className="hero-section"
+        >
+          <div
+            className="hero-section__main"
+          >
+            <h2>
+              Men's wears
+            </h2>
+            <p>
+              Jackets
+            </p>
+            <p>
+              Suits
+            </p>
+            <p>
+              Trousers
+            </p>
+            <p>
+              Vests
+            </p>
+          </div>
+        </div>
+      </Hero>
+      <HomeCatalogue
+        allProducts={Array []}
+        fetchProducts={[Function]}
+        filterAllCategories={[Function]}
+        filterAllDepartments={[Function]}
+        filterResults={null}
+        productCount={null}
+        resetFilter={[Function]}
+      >
+        <div
+          className="home-catalogue"
+        >
+          <div
+            className="home-catalogue__main"
+          >
+            <HomeCatalogueFilter
+              fetchProducts={[Function]}
+              filterAllCategories={[Function]}
+              filterAllDepartments={[Function]}
+              filterResults={null}
+              productCount={null}
+              resetFilter={[Function]}
+            >
+              <div
+                className="filter-main"
+              >
+                <div
+                  className="filter-main__container"
+                >
+                  <div
+                    className="filter-main__results"
+                  >
+                    <h2>
+                      Filter 
+                       items
+                    </h2>
+                  </div>
+                  <div
+                    className="filter-main__selection"
+                  >
+                    <div
+                      className="filter-main__department"
+                    >
+                      <h3>
+                        Department
+                      </h3>
+                      <div
+                        className="filter-main__form__wrapper"
+                      >
+                        <form
+                          className="filter-main__form"
+                        >
+                          <div>
+                            <input
+                              checked={false}
+                              id="Regional"
+                              name="department"
+                              onChange={[Function]}
+                              type="radio"
+                              value="Regional"
+                            />
+                            <label
+                              htmlFor="Regional"
+                            >
+                              Regional
+                            </label>
+                          </div>
+                          <div>
+                            <input
+                              checked={false}
+                              id="Nature"
+                              name="department"
+                              onChange={[Function]}
+                              type="radio"
+                              value="Nature"
+                            />
+                            <label
+                              htmlFor="Nature"
+                            >
+                              Nature
+                            </label>
+                          </div>
+                          <div>
+                            <input
+                              checked={false}
+                              id="Seasonal"
+                              name="department"
+                              onChange={[Function]}
+                              type="radio"
+                              value="Seasonal"
+                            />
+                            <label
+                              htmlFor="Seasonal"
+                            >
+                              Seasonal
+                            </label>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                    <div
+                      className="filter-main__category"
+                    >
+                      <h3>
+                        Category
+                      </h3>
+                      <div
+                        className="filter-main__form__wrapper"
+                      >
+                        <form
+                          className="filter-main__form"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    className="filter-main__action"
+                  >
+                    <button
+                      onClick={[Function]}
+                    >
+                      Apply
+                    </button>
+                    <p
+                      onClick={[Function]}
+                    >
+                      x Clear All
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </HomeCatalogueFilter>
+            <ZeroCount>
+              <div
+                className="empty-search"
+              >
+                <h3>
+                  Nothing matching your search was found
+                </h3>
+              </div>
+            </ZeroCount>
+          </div>
+        </div>
+      </HomeCatalogue>
+      <Pagination
+        currentPage={1}
+        handlePagination={[Function]}
+        productsCount={null}
+      >
+        <div
+          className="pagination"
+        >
+          <div
+            className="pagination-main"
+          >
+            <div
+              className="pagination-main__directionLeft"
+              onClick={null}
+            >
+              <div
+                className="pagination-main__back"
+              >
+                <img
+                  alt="Back"
+                  src="backArrow.svg"
+                />
+              </div>
+              <p>
+                Back
+              </p>
+            </div>
+            <div
+              className="pagination-main__page"
+            >
+              <p
+                className="pagination-main__reference"
+              >
+                1
+              </p>
+              <p>
+                of
+              </p>
+              <p>
+                1
+              </p>
+            </div>
+            <div
+              className="pagination-main__directionRight"
+              onClick={null}
+            >
+              <p>
+                Forward
+              </p>
+              <div
+                className="pagination-main__forward"
+              >
+                <img
+                  alt="Back"
+                  src="forwardArrow.svg"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </Pagination>
+      <BrandAd>
+        <div
+          className="brand-ad"
+        >
+          <div
+            className="brand-ad__main"
+          >
+            <h3>
+              Converse
+            </h3>
+            <p>
+              Explore styles tough enough to handle all your workouts
+            </p>
+            <button>
+              Shop Converse
+            </button>
+          </div>
+        </div>
+      </BrandAd>
+    </div>
+    <div
+      className="subscription-section"
+    >
+      <Subscription>
+        <div
+          className="subscription"
+        >
+          <div
+            className="subscription__main"
+          >
+            <h3>
+              SUBSCRIBE FOR SHOP NEWS, UPDATES AND SPECIAL OFFERS
+            </h3>
+            <div
+              className="subscription__input"
+            >
+              <img
+                alt="message-icon"
+                src="message.svg"
+              />
+              <input
+                placeholder="Your e-mail here"
+                type="text"
+              />
+            </div>
+            <button>
+              Subscribe
+            </button>
+          </div>
+        </div>
+      </Subscription>
+    </div>
+    <footer
+      className="footer"
+    >
+      <Footer>
+        <div
+          className="footer-main"
+        >
+          <div
+            className="footer-container"
+          >
+            <div
+              className="footer-container__categories"
+            >
+              <h3>
+                Women
+              </h3>
+              <h3>
+                Men
+              </h3>
+              <h3>
+                Kids
+              </h3>
+              <h3>
+                Shoes
+              </h3>
+              <h3>
+                Brands
+              </h3>
+            </div>
+            <div
+              className="footer-container__social"
+            >
+              <div
+                className="footer-container__socialIcons"
+              >
+                <img
+                  alt="instagram"
+                  src="instagramIcon.svg"
+                />
+              </div>
+              <div
+                className="footer-container__socialIcons"
+              >
+                <img
+                  alt="pinterest"
+                  src="pinterestIcon.svg"
+                />
+              </div>
+              <div
+                className="footer-container__socialIcons"
+              >
+                <img
+                  alt="twitter"
+                  src="twitterIcon.svg"
+                />
+              </div>
+              <div
+                className="footer-container__socialIcons"
+              >
+                <img
+                  alt="facebook"
+                  src="facebookIcon.svg"
+                />
+              </div>
+            </div>
+            <div
+              className="footer-container__information"
+            >
+              © shopmate Ltd • Contact • Privacy Policy
+            </div>
+          </div>
+        </div>
+      </Footer>
+    </footer>
+  </div>
+</Homepage>
+`;

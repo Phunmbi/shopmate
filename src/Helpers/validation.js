@@ -7,6 +7,16 @@ class Validation {
         return this.checkEmail(input, errors);
       case 'Password':
         return this.checkPassword(input, errors);
+      case 'Address 1':
+        return this.checkNotEmpty(input, errors, "Address 1");
+      case 'City':
+        return this.checkNotEmpty(input, errors, "City");
+      case 'Region':
+        return this.checkNotEmpty(input, errors, "Region");
+      case 'Country':
+        return this.checkNotEmpty(input, errors, "Country");
+      case 'Postal Code':
+        return this.checkNotEmpty(input, errors, "Postal Code");
       default:
         break;
     }
@@ -41,6 +51,16 @@ class Validation {
       return errors;
     }
     delete errors.Password;
+  }
+
+  static checkNotEmpty (input, errors, field) {
+    if (input.trim().length < 1) {
+      errors = {
+        [field]: `Please enter a valid ${[field]}`
+      };
+      return errors;
+    }
+    delete errors[field];
   }
 }
 

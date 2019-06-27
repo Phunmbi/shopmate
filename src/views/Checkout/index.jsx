@@ -1,46 +1,124 @@
 import React, {Component,Fragment} from 'react';
 import { connect } from 'react-redux';
+import {Elements, StripeProvider} from 'react-stripe-elements';
 import './Checkout.scss';
-import NavbarHome from '../../components/Navbar/NavbarHome/Index';
 import NavBarCollapse from '../../components/Navbar/NavBarCollapse/index';
-import { retrieveCart } from "../../redux/actionCreator/shoppingCart";
+import Shipping from '../../components/Checkout/Shipping/index';
+import OrderDetails from '../../components/Checkout/OrderDetails/index';
 import Footer from '../../components/Footer/index';
+import {getShippingRegions, getShippingCost, createOrder, stripeCharge} from '../../redux/actionCreator/checkout'
+import PaymentForm from "../../components/Checkout/StripePayment/PaymentForm";
 
 export class Checkout extends Component {
   state = {
-  
+    selectedRegion: '',
+    selectedCost: '',
+    isOrderDetailsComplete: false,
+    isOrderCreatedAndConfirmed: false,
   };
-  
-  handleRetrieveCart = () => {
-    const { retrieveCart } = this.props;
-    const cart_id = localStorage.getItem("cart_id");
-    retrieveCart(cart_id);
+
+  handleSubmitShippingDetails = (selectedRegion, selectedCost) => {
+    this.setState({
+      ...this.state,
+      selectedCost: selectedCost,
+      selectedRegion: selectedRegion,
+      isOrderDetailsComplete: true,
+    })
   };
-  
-  calculateBagTotal = () => {
-    const { cart } = this.props;
-    let total = 0;
-    cart.map((eachItem) => {
-      return total += parseFloat(eachItem.subtotal);
-    });
-    return total.toFixed(2);
+
+  redirectCheckoutPage = () => {
+    this.setState({
+      ...this.state,
+      isOrderDetailsComplete: false,
+    })
   };
-  
+
+  redirectPaymentPage = () => {
+    this.setState({
+      ...this.state,
+      isOrderCreatedAndConfirmed: false
+    })
+  };
+
+  handlePaymentNext = () => {
+    this.setState({
+      ...this.state,
+      isOrderCreatedAndConfirmed: true,
+    })
+  };
+
+  renderStripePayment = () => {
+    const { history, orderId, stripeCharge, stripeChargeResponse, creatingStripeCharge } = this.props;
+    return (
+      <StripeProvider apiKey="pk_test_NcwpaplBCuTL6I0THD44heRe">
+        <div className="stripe-payment">
+          <div className="stripe-payment__main">
+            <h1>Checkout</h1>
+            <Elements>
+              <PaymentForm
+                history={history}
+                orderId={orderId}
+                redirectPaymentPage={this.redirectPaymentPage}
+                stripeCharge={stripeCharge}
+                stripeChargeResponse={stripeChargeResponse}
+                creatingStripeCharge={creatingStripeCharge}
+              />
+            </Elements>
+          </div>
+        </div>
+      </StripeProvider>
+    )
+  };
+
   render() {
-    const {history, cart} = this.props;
+    const {
+      cart,
+      history,
+      getShippingCost,
+      getShippingRegions,
+      shippingCost,
+      shippingRegions,
+      loadingCost,
+      loadingRegions,
+      creatingOrder,
+      createOrder,
+    } = this.props;
+
+    const { isOrderDetailsComplete, isOrderCreatedAndConfirmed, selectedRegion, selectedCost } = this.state;
     return (
       <Fragment>
         <div className='checkout'>
           <header>
-            <NavbarHome
-              cartCount={cart.length}
-              retrieveCart={this.handleRetrieveCart}
-              bagTotal={this.calculateBagTotal}
-            />
             <NavBarCollapse history={history}/>
           </header>
-          <h3>Checkout</h3>
-  
+          
+          <section>
+            {isOrderDetailsComplete ?
+             isOrderCreatedAndConfirmed ?
+              this.renderStripePayment() :
+              (<OrderDetails
+                cart={cart}
+                history={history}
+                selectedRegion={selectedRegion}
+                selectedCost={selectedCost}
+                creatingOrder={creatingOrder}
+                redirectPage={this.redirectCheckoutPage}
+                handleNext={this.handlePaymentNext}
+              />)
+              :
+              (<Shipping
+                loadingCost={loadingCost}
+                loadingRegions={loadingRegions}
+                getShippingCost={getShippingCost}
+                getShippingRegions={getShippingRegions}
+                shippingCost={shippingCost}
+                shippingRegions={shippingRegions}
+                createOrder={createOrder}
+                handleSubmitShippingDetails={this.handleSubmitShippingDetails}
+              />)
+            }
+          </section>
+
           <footer className="footer">
             <Footer />
           </footer>
@@ -50,14 +128,23 @@ export class Checkout extends Component {
   }
 }
 
-const mapStateToProps = ({shoppingCart}) => ({
-  cart_Id: shoppingCart.cart_Id,
+const mapStateToProps = ({checkout, shoppingCart}) => ({
   cart: shoppingCart.cart,
-  cartLoading: shoppingCart.loadingShoppingCart
+  shippingRegions: checkout.shippingRegions,
+  loadingRegions: checkout.loadingRegions,
+  loadingCost: checkout.loadingCost,
+  shippingCost: checkout.shippingCost,
+  orderId: checkout.orderId,
+  creatingOrder : checkout.creatingOrder,
+  creatingStripeCharge: checkout.creatingStripeCharge,
+  stripeChargeResponse: checkout.stripeChargeResponse
 });
 
 const mapDispatchToProps = {
-  retrieveCart
+  getShippingRegions,
+  getShippingCost,
+  createOrder,
+  stripeCharge
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Checkout);

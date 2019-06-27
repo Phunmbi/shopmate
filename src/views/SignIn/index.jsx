@@ -4,7 +4,7 @@ import Modal from '../../components/Modal/index';
 import Loading from '../../components/Loading/index';
 import Validation from "../../Helpers/validation";
 
-export class SignUp extends Component {
+export class SignIn extends Component {
 	state = {
 		values: {
 			Email: '',
@@ -44,7 +44,7 @@ export class SignUp extends Component {
 		} );
 	};
 
-	signinForm = () => {
+	signInForm = () => {
 		const { authLoading } = this.props;
 		const { errors } = this.state;
 		return (
@@ -101,7 +101,7 @@ export class SignUp extends Component {
 					<Modal
 						title="Sign In"
 						height="220px"
-						childForm={this.signinForm}
+						childForm={this.signInForm}
 						additionalOptions={this.additionalOptions}
 						handleCloseModal={handleCloseModal}
 						handleDisplayModal={handleDisplayModal}
@@ -112,4 +112,4 @@ export class SignUp extends Component {
 	}
 }
 
-export default SignUp;
+export default SignIn;

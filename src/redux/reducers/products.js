@@ -3,6 +3,7 @@ import * as types from '../constants/actionTypes';
 const initialState = {
 	products: [],
 	singleProductDetails: {},
+  singleProductLoading: true,
 	count: null,
 	error: '',
 	loading: false,
@@ -47,13 +48,13 @@ const product = ( state = initialState, action ) => {
 		case types.SINGLE_PRODUCT_DETAILS:
 			return {
 				...state,
-				loading: true,
+        singleProductLoading: true,
 				error: '',
 			};
 		case types.SINGLE_PRODUCT_DETAILS_SUCCESS:
 			return {
 				...state,
-				loading: false,
+        singleProductLoading: false,
 				singleProductDetails: {...action.payload},
 				error: '',
 			};
@@ -61,7 +62,7 @@ const product = ( state = initialState, action ) => {
 			return {
 				...state,
 				singleProductDetails: {},
-				loading: false,
+        singleProductLoading: false,
 				error: action.payload,
 			};
     case types.SINGLE_PRODUCT_REVIEWS:

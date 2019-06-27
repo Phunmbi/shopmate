@@ -65,6 +65,7 @@ export class SingleProduct extends Component {
     cart.map((eachItem) => {
       return total += parseFloat(eachItem.subtotal);
     });
+    localStorage.setItem('cartTotal', total.toFixed(2));
     return total.toFixed(2);
   };
   
@@ -209,7 +210,8 @@ export class SingleProduct extends Component {
       reviewsLoading,
       reviews,
       history,
-      cart
+      cart,
+      singleProductLoading
 		} = this.props;
 		const { displayModal, openModal, quantity, selectedSize,selectedColour } = this.state;
 		return (
@@ -225,10 +227,10 @@ export class SingleProduct extends Component {
 						<NavBarCollapse history={history}/>
 					</header>
           {
-            reviewsLoading ?
-              <Loading height="900px" /> :
-              (
-                <Fragment>
+            <Fragment>
+              {singleProductLoading ?
+                <Loading height='900px'/> :
+                (
                   <section className="product-details">
                     <ProductDetails
                       productDetails={productDetails}
@@ -242,17 +244,25 @@ export class SingleProduct extends Component {
                       colourSelector={this.colourSelector}
                       handleDisplayModal={this.handleDisplayModal}
                       handleAddToCart={this.handleAddToCart}
+                      singleProductLoading={singleProductLoading}
                     />
-                  </section>
-                  <section className="product-reviews">
-                    <ProductReviews
-                      reviews={reviews}
-                      handleAddSingleReview={this.handleAddSingleReview}
-                      productDetails={productDetails}
-                    />
-                  </section>
-                </Fragment>
-            )
+                  </section>)
+              }
+              {
+                reviewsLoading ?
+                  <Loading height='900px'/> :
+                  (
+                    <section className="product-reviews">
+                      <ProductReviews
+                        reviews={reviews}
+                        handleAddSingleReview={this.handleAddSingleReview}
+                        productDetails={productDetails}
+                        reviewsLoading={reviewsLoading}
+                      />
+                    </section>
+                  )
+              }
+            </Fragment>
           }
           <footer className="footer">
             <Footer />
@@ -265,8 +275,9 @@ export class SingleProduct extends Component {
 	}
 }
 
-const mapStateToProps = ({products, auth, shoppingCart}) => ({
+const mapStateToProps = ({ products, auth, shoppingCart }) => ({
 	productDetails: products.singleProductDetails,
+  singleProductLoading: products.singleProductLoading,
 	loadingProduct: products.loading,
   authLoading: auth.loading,
   reviews: products.reviews,

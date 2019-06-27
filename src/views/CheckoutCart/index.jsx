@@ -23,7 +23,16 @@ class CheckoutCart extends Component {
     
     return !addedToCart && this.handleAddToCart();
   }
-  
+
+  handleAddToCart = () => {
+    const { addToCart, productDetails:{product_id} } = this.props;
+    const { selectedColour, selectedSize} = this.state;
+
+    const cartId = localStorage.getItem("cart_id");
+
+    if (cartId) return addToCart({cart_id: cartId, product_id, attributes: `${selectedColour}, ${selectedSize}`});
+  };
+
   seedItemQuantity = (cart) => {
     cart.map((eachItem) => {
       const {item_id} = eachItem;
@@ -101,7 +110,7 @@ class CheckoutCart extends Component {
     const imageUrl = `https://backendapi.turing.com/images/products/${eachCartItem.name
       .toLowerCase()
       .replace(/\W+(?!$)/g, '-')}.gif`;
-    
+
     const {removeFromCart} = this.props;
     const {attributes} = eachCartItem;
     return (
@@ -156,8 +165,8 @@ class CheckoutCart extends Component {
   };
   
   renderModal = () => {
-    const { handleCloseModal, cart, cartLoading, startCheckout } = this.props;
-    return cartLoading ?
+    const { handleCloseModal, cart, loadingShoppingCart, startCheckout } = this.props;
+    return loadingShoppingCart ?
       null :
       (
         <Fragment>

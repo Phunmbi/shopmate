@@ -1,5 +1,11 @@
 import auth from '../auth';
-import {SIGN_UP, SIGN_UP_FAILURE, SIGN_UP_SUCCESS} from '../../constants/actionTypes';
+import {
+  GET_USER_SUCCESS,
+  SIGN_UP,
+  SIGN_UP_FAILURE,
+  SIGN_UP_SUCCESS,
+  UPDATE_USER_SUCCESS
+} from '../../constants/actionTypes';
 
 const initialState = {
   isAuthenticated: false,
@@ -46,5 +52,39 @@ describe('Auth Reducer', () => {
       loading: false
     };
     expect(auth(initialState, action).isAuthenticated).toBe(true);
+  });
+
+  it('returns get user correctly', () => {
+    const action = {
+      type: GET_USER_SUCCESS,
+      payload: {
+        fullName: "Names",
+        id: 798,
+        address_1: 'no 1 aminu',
+        address_2: '',
+        city: 'Lagos',
+        Region: 'South West',
+        Country: 'Nigeria'
+      },
+      loading: false
+    };
+    expect(auth(initialState, action).user.Country).toBe('Nigeria');
+  });
+
+  it('returns update user correctly', () => {
+    const action = {
+      type: UPDATE_USER_SUCCESS,
+      payload: {
+        fullName: "Names",
+        id: 798,
+        address_1: 'no 1 aminu',
+        address_2: '',
+        City: 'Lagos',
+        Region: 'South West',
+        Country: 'Nigeria'
+      },
+      loading: false
+    };
+    expect(auth(initialState, action).user.City).toBe('Lagos');
   });
 });

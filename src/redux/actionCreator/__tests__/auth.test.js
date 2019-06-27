@@ -66,4 +66,29 @@ describe('Test for auth action', () => {
     toEqual(actionTypes.GET_USER_FAILURE);
     done();
   });
+  it('create an action UPDATE_USER to set user in store', (done) => {
+    expect(authActions.updateUser({
+      address_1:'no 1 aminu',
+      address_2:'',
+      city:'Lagos',
+      region:'SouthWest',
+      country:'Nigeria',
+      postal_code: 4433,
+      shipping_region_id: 3
+    }).type).
+    toEqual(actionTypes.UPDATE_USER);
+    done();
+  });
+
+  it('create an action to UPDATE_USER_SUCCESS to redux store', (done) => {
+    expect(authActions.updateUserSuccess(res).type).
+    toEqual(actionTypes.UPDATE_USER_SUCCESS);
+    done();
+  });
+
+  it('create an action to UPDATE_USER_SUCCESS to redux store', (done) => {
+    expect(authActions.updateUserFailure(error).type).
+    toEqual(actionTypes.UPDATE_USER_FAILURE);
+    done();
+  });
 });

@@ -4,7 +4,7 @@ import Modal from '../../components/Modal/index';
 import Loading from '../../components/Loading/index';
 import Validation from "../../Helpers/validation";
 
-export class SignUp extends Component {
+export class SignIn extends Component {
 	state = {
 		values: {
 			Email: '',
@@ -112,4 +112,4 @@ export class SignUp extends Component {
 	}
 }
 
-export default SignUp;
+export default SignIn;

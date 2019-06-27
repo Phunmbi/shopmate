@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {CardElement, injectStripe} from 'react-stripe-elements';
 import "./PaymentForm.scss";
 
-class PaymentForm extends Component {
+export class PaymentForm extends Component {
   submit = async () => {
     const { stripeCharge, stripe, orderId, history } = this.props;
     let {token} = await stripe.createToken({name: "Name"});

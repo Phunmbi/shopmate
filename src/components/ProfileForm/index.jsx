@@ -42,7 +42,6 @@ class ProfileForm extends Component {
   handleSubmit = event => {
     event.preventDefault();
     const {updateUser, history} = this.props;
-    console.log(this.state.values);
 
     updateUser({
       address_1: this.state.values['Address 1'],

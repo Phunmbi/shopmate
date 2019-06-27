@@ -102,7 +102,8 @@ export class HomeCatalogueFilter extends Component {
 		const {department} = this.defaultState;
 		localStorage.setItem( "selectedDepartmentID", this.state.department[value].id );
 		localStorage.setItem( 'selectedDepartment', value );
-        localStorage.setItem( "isADepartmentSelected", "true" );
+		localStorage.setItem( "isADepartmentSelected", "true" );
+
 		this.setState({
 			department: {
 				...department,
@@ -116,7 +117,7 @@ export class HomeCatalogueFilter extends Component {
 
 	renderCategories = ( departments ) => {
 		for (const key in departments) {
-			if (departments.hasOwnProperty(key)) {
+        if (departments.hasOwnProperty(key)) {
 				const element = departments[key];
 				if ( element.status ) {
 					return this.switchCategories(key);
@@ -234,9 +235,9 @@ export class HomeCatalogueFilter extends Component {
 
 		switch (departmentSelected) {
 			case "true":
-                return(
-                    categorySelected ? filterAllCategories(localStorage.getItem('selectedCategoryID')) : filterAllDepartments(localStorage.getItem('selectedDepartmentID'))
-				);
+        return(
+          categorySelected ? filterAllCategories(localStorage.getItem('selectedCategoryID')) : filterAllDepartments(localStorage.getItem('selectedDepartmentID'))
+        );
 			case "false":
 				return null;
 			default:

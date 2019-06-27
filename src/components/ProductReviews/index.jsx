@@ -23,32 +23,28 @@ export class ProductReviews extends Component {
       reviews,
       handleAddSingleReview,
       productDetails,
-      reviewsLoading
     } = this.props;
     return (
       <Fragment>
-        {reviewsLoading ?
-          (<Loading height='900px' />) :
-          (
-            <div className="product-reviews__main">
-              <div className="product-reviews__container">
-                <div className="product-reviews__width">
-                  <div className="product-reviews__reviewsSection">
-                    <div className="product-reviews__title">
-                      <h3>Product reviews</h3>
-                    </div>
-                    {this.renderSingleProductReview(reviews)}
-                  </div>
-                  <div className="product-reviews__add">
-                    <AddReview
-                      handleAddSingleReview={handleAddSingleReview}
-                      productDetails={productDetails}
-                    />
-                  </div>
+        {
+          <div className="product-reviews__main">
+          <div className="product-reviews__container">
+            <div className="product-reviews__width">
+              <div className="product-reviews__reviewsSection">
+                <div className="product-reviews__title">
+                  <h3>Product reviews</h3>
                 </div>
+                {this.renderSingleProductReview(reviews)}
+              </div>
+              <div className="product-reviews__add">
+                <AddReview
+                  handleAddSingleReview={handleAddSingleReview}
+                  productDetails={productDetails}
+                />
               </div>
             </div>
-          )
+          </div>
+          </div>
         }
       </Fragment>
     );

@@ -1,6 +1,4 @@
-[![CircleCI](https://circleci.com/gh/Phunmbi/shopmate/tree/master.svg?style=svg&circle-token=350f38c6f5332b280414c828bef785e9f2b77359)](https://circleci.com/gh/Phunmbi/shopmate/tree/master)
-
-[![Test Coverage](https://api.codeclimate.com/v1/badges/ae932d74ce3644a5f953/test_coverage)](https://codeclimate.com/github/Phunmbi/shopmate/test_coverage)
+[![CircleCI](https://circleci.com/gh/Phunmbi/shopmate/tree/master.svg?style=svg&circle-token=350f38c6f5332b280414c828bef785e9f2b77359)](https://circleci.com/gh/Phunmbi/shopmate/tree/master)   [![Test Coverage](https://api.codeclimate.com/v1/badges/ae932d74ce3644a5f953/test_coverage)](https://codeclimate.com/github/Phunmbi/shopmate/test_coverage)   [![Maintainability](https://api.codeclimate.com/v1/badges/ae932d74ce3644a5f953/maintainability)](https://codeclimate.com/github/Phunmbi/shopmate/maintainability)
 
 
 

@@ -275,7 +275,7 @@ export class SingleProduct extends Component {
 	}
 }
 
-const mapStateToProps = ({products, auth, shoppingCart}) => ({
+const mapStateToProps = ({ products, auth, shoppingCart }) => ({
 	productDetails: products.singleProductDetails,
   singleProductLoading: products.singleProductLoading,
 	loadingProduct: products.loading,

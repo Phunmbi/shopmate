@@ -4,7 +4,7 @@ import UserProfile from '../../../images/profile-picture.svg'
 import Search from '../../../images/search.svg';
 import './NavbarProfile.scss';
 
-export default class index extends Component {
+export default class NavbarProfile extends Component {
 	state = {
 		searchValue: "",
 		displayDropDown: false

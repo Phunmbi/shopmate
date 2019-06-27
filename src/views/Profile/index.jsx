@@ -13,7 +13,7 @@ import SignIn from "../SignIn";
 import CheckoutCart from "../CheckoutCart";
 import './Profile.scss';
 
-class Profile extends Component {
+export class Profile extends Component {
   state = {
     displayModal: false,
     openModal: "none",

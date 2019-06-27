@@ -2,7 +2,7 @@ import React, {Component, Fragment} from 'react';
 import Loading from '../../Loading/index';
 import './OrderDetails.scss'
 
-class OrderDetails extends Component {
+export class OrderDetails extends Component {
   renderEntries = (cart) => {
     return cart.map((eachEntry) => {
       return (<div key={eachEntry.item_id} className="shipping-main__entries">

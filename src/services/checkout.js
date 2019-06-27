@@ -3,7 +3,6 @@ import BaseAuthorization from './index';
 
 export default class CheckoutAPI {
   static getShippingRegions ( ) {
-    console.log('services, check!');
     return axios.get( `${BaseAuthorization.baseURL}/shipping/regions`);
   }
   

@@ -1,0 +1,777 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ConnectedHomePage /> renders appropriately 1`] = `
+<SingleProduct
+  addSingleReview={[MockFunction]}
+  addToCart={[MockFunction]}
+  allProducts={Array []}
+  cart={
+    Array [
+      Object {
+        "attributes": "Blue, S",
+        "item_id": 1,
+        "name": "adeniyi",
+        "quantity": 3,
+      },
+      Object {
+        "attributes": "Purple, S",
+        "item_id": 2,
+        "name": "victor",
+        "quantity": 4,
+      },
+    ]
+  }
+  cartLoading={false}
+  getCartId={[MockFunction]}
+  handleSearch={[Function]}
+  history={
+    Object {
+      "push": [MockFunction],
+    }
+  }
+  match={
+    Object {
+      "params": Object {
+        "product_id": 1,
+      },
+    }
+  }
+  productDetails={
+    Object {
+      "image": "image.png",
+      "image_2": "image2.png",
+      "name": "nigerian",
+      "product_id": 1,
+      "subtotal": 455,
+      "thumbnail": "thumbnail.png",
+    }
+  }
+  removeFromCart={[MockFunction]}
+  retrieveCart={
+    [MockFunction] {
+      "calls": Array [
+        Array [
+          null,
+        ],
+      ],
+      "results": Array [
+        Object {
+          "isThrow": false,
+          "value": undefined,
+        },
+      ],
+    }
+  }
+  reviews={
+    Array [
+      Object {
+        "name": "named",
+        "rating": 4,
+        "review": "Terrible product",
+      },
+    ]
+  }
+  searchAllProducts={[MockFunction]}
+  signIn={[MockFunction]}
+  signUp={[MockFunction]}
+  singleProductDetails={
+    [MockFunction] {
+      "calls": Array [
+        Array [
+          undefined,
+        ],
+      ],
+      "results": Array [
+        Object {
+          "isThrow": false,
+          "value": undefined,
+        },
+      ],
+    }
+  }
+  singleProductReviews={
+    [MockFunction] {
+      "calls": Array [
+        Array [
+          undefined,
+        ],
+      ],
+      "results": Array [
+        Object {
+          "isThrow": false,
+          "value": undefined,
+        },
+      ],
+    }
+  }
+  store={
+    Object {
+      "clearActions": [Function],
+      "dispatch": [Function],
+      "getActions": [Function],
+      "getState": [Function],
+      "replaceReducer": [Function],
+      "subscribe": [Function],
+    }
+  }
+  updateCart={[MockFunction]}
+>
+  <div
+    className="product"
+  >
+    <header>
+      <NavbarHome
+        bagTotal={[Function]}
+        cartCount={2}
+        handleDisplayModal={[Function]}
+        retrieveCart={[Function]}
+      >
+        <div
+          className="navbar-home"
+        >
+          <div
+            className="navbar-home__main"
+          >
+            <div
+              className="navbar-home__action .Text-Style-2"
+            >
+              <h3
+                className="navbar-home__action1"
+              >
+                Hi! 
+              </h3>
+              <h3
+                className="navbar-home__action2"
+                onClick={[Function]}
+              >
+                Sign in
+              </h3>
+              <h3
+                className="navbar-home__action1"
+              >
+                or 
+              </h3>
+              <h3
+                className="navbar-home__action2"
+                onClick={[Function]}
+              >
+                Register
+              </h3>
+            </div>
+            <div
+              className="navbar-home__cart"
+              onClick={[Function]}
+            >
+              <Cart
+                cartCount={2}
+              >
+                <div
+                  className="cart-main"
+                >
+                  <img
+                    alt="Checkout Bag"
+                    src="cart-white.svg"
+                  />
+                  <div
+                    className="cart-main__count"
+                  >
+                    2
+                  </div>
+                </div>
+              </Cart>
+              <div>
+                Your Bag: £
+                NaN
+              </div>
+            </div>
+          </div>
+        </div>
+      </NavbarHome>
+      <NavBarCollapse
+        history={
+          Object {
+            "push": [MockFunction],
+          }
+        }
+      >
+        <div
+          className="navbar-collapse"
+        >
+          <div
+            className="navbar-collapse__container"
+          >
+            <h3
+              onClick={[Function]}
+            >
+              SHOPMATE
+            </h3>
+          </div>
+        </div>
+      </NavBarCollapse>
+    </header>
+    <section
+      className="product-details"
+    >
+      <ProductDetails
+        averageRating={4}
+        colourSelector={[Function]}
+        handleAddToCart={[Function]}
+        handleDisplayModal={[Function]}
+        increaseQuantity={[Function]}
+        productDetails={
+          Object {
+            "image": "image.png",
+            "image_2": "image2.png",
+            "name": "nigerian",
+            "product_id": 1,
+            "subtotal": 455,
+            "thumbnail": "thumbnail.png",
+          }
+        }
+        quantity={1}
+        reduceQuantity={[Function]}
+        selectedColour="teal"
+        selectedSize="S"
+        sizeSelector={[Function]}
+      >
+        <div
+          className="product-details__main"
+        >
+          <div
+            className="product-details__container"
+          >
+            <div
+              className="product-details__imageContainer"
+            >
+              <div
+                className="product-details__mainImage"
+              >
+                <img
+                  alt=""
+                  src="https://backendapi.turing.com/images/products/null"
+                />
+              </div>
+              <div
+                className="product-details__thumbnails"
+              >
+                <img
+                  alt=""
+                  onMouseOver={[Function]}
+                  src="https://backendapi.turing.com/images/products/thumbnail.png"
+                />
+                <img
+                  alt=""
+                  onMouseOver={[Function]}
+                  src="https://backendapi.turing.com/images/products/image2.png"
+                />
+              </div>
+            </div>
+            <div
+              className="product-details__details"
+            >
+              <div
+                className="product-details__ratings"
+              >
+                <img
+                  alt=""
+                  key="0"
+                  src="gold 4.svg"
+                />
+                <img
+                  alt=""
+                  key="1"
+                  src="gold 4.svg"
+                />
+                <img
+                  alt=""
+                  key="2"
+                  src="gold 4.svg"
+                />
+                <img
+                  alt=""
+                  key="3"
+                  src="gold 4.svg"
+                />
+                <img
+                  alt=""
+                  key="4"
+                  src="grey 1.svg"
+                />
+              </div>
+              <h3>
+                nigerian
+              </h3>
+              <div
+                className="product-details__prices"
+              >
+                <h3
+                  className="product-details__discountedPrice"
+                >
+                  £
+                </h3>
+                <h3
+                  className="product-details__price"
+                >
+                  £
+                </h3>
+              </div>
+              <div
+                className="product-details__color"
+              >
+                <h4>
+                  Color
+                </h4>
+                <div
+                  className="product-details__eachColor"
+                  onClick={[Function]}
+                >
+                  <img
+                    alt="blue"
+                    key="blue"
+                    src="blue.svg"
+                  />
+                  <img
+                    alt="teal"
+                    className="product-details__selectedColor"
+                    key="teal"
+                    src="teal.svg"
+                  />
+                  <img
+                    alt="red"
+                    key="red"
+                    src="red.svg"
+                  />
+                  <img
+                    alt="orange"
+                    key="orange"
+                    src="orange.svg"
+                  />
+                  <img
+                    alt="yellow"
+                    key="yellow"
+                    src="yellow.svg"
+                  />
+                  <img
+                    alt="green"
+                    key="green"
+                    src="green.svg"
+                  />
+                  <img
+                    alt="purple"
+                    key="purple"
+                    src="purple.svg"
+                  />
+                </div>
+              </div>
+              <div
+                className="product-details__sizeMenu"
+              >
+                <div
+                  className="product-details__sizes"
+                >
+                  <h3>
+                    Size
+                  </h3>
+                  <p>
+                    Size guide
+                  </p>
+                </div>
+                <div
+                  className="product-details__sizeButton"
+                  onClick={[Function]}
+                >
+                  <div
+                    className="product-details__eachSize"
+                    key="XS"
+                  >
+                    XS
+                  </div>
+                  <div
+                    className="product-details__eachSizeSelected"
+                    key="S"
+                  >
+                    S
+                  </div>
+                  <div
+                    className="product-details__eachSize"
+                    key="M"
+                  >
+                    M
+                  </div>
+                  <div
+                    className="product-details__eachSize"
+                    key="L"
+                  >
+                    L
+                  </div>
+                  <div
+                    className="product-details__eachSize"
+                    key="XL"
+                  >
+                    XL
+                  </div>
+                  <div
+                    className="product-details__eachSize"
+                    key="XXL"
+                  >
+                    XXL
+                  </div>
+                </div>
+              </div>
+              <div
+                className="product-details__quantity"
+              >
+                <h3>
+                  Quantity
+                </h3>
+                <div
+                  className="product-details__quantityClicker"
+                >
+                  <img
+                    alt=""
+                    onClick={[Function]}
+                    src="minus.svg"
+                  />
+                  <div
+                    className="product-details__count"
+                  >
+                    <p>
+                      1
+                    </p>
+                  </div>
+                  <img
+                    alt=""
+                    onClick={[Function]}
+                    src="plus.svg"
+                  />
+                </div>
+              </div>
+              <div
+                className="product-details__action"
+              >
+                <button
+                  onClick={[Function]}
+                >
+                  Add to Cart
+                </button>
+                <div
+                  className="product-details__wishList"
+                >
+                  <img
+                    alt=""
+                    src="heart.svg"
+                  />
+                  <p>
+                    Add to Wish List
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ProductDetails>
+    </section>
+    <section
+      className="product-reviews"
+    >
+      <ProductReviews
+        handleAddSingleReview={[Function]}
+        productDetails={
+          Object {
+            "image": "image.png",
+            "image_2": "image2.png",
+            "name": "nigerian",
+            "product_id": 1,
+            "subtotal": 455,
+            "thumbnail": "thumbnail.png",
+          }
+        }
+        reviews={
+          Array [
+            Object {
+              "name": "named",
+              "rating": 4,
+              "review": "Terrible product",
+            },
+          ]
+        }
+      >
+        <div
+          className="product-reviews__main"
+        >
+          <div
+            className="product-reviews__container"
+          >
+            <div
+              className="product-reviews__width"
+            >
+              <div
+                className="product-reviews__reviewsSection"
+              >
+                <div
+                  className="product-reviews__title"
+                >
+                  <h3>
+                    Product reviews
+                  </h3>
+                </div>
+                <SingleProductReview
+                  key="0"
+                  review={
+                    Object {
+                      "name": "named",
+                      "rating": 4,
+                      "review": "Terrible product",
+                    }
+                  }
+                >
+                  <div
+                    className="single-review__container"
+                  >
+                    <div
+                      className="single-review__rating"
+                    >
+                      <img
+                        alt=""
+                        key="0"
+                        src="gold 4.svg"
+                      />
+                      <img
+                        alt=""
+                        key="1"
+                        src="gold 4.svg"
+                      />
+                      <img
+                        alt=""
+                        key="2"
+                        src="gold 4.svg"
+                      />
+                      <img
+                        alt=""
+                        key="3"
+                        src="gold 4.svg"
+                      />
+                      <img
+                        alt=""
+                        key="4"
+                        src="grey 1.svg"
+                      />
+                    </div>
+                    <div
+                      className="single-review__description"
+                    >
+                      <p>
+                        Terrible product
+                      </p>
+                    </div>
+                  </div>
+                  <div
+                    className="single-review__details"
+                  >
+                    <div
+                      className="single-review__reviewer"
+                    >
+                      <h3>
+                        named
+                      </h3>
+                    </div>
+                    <div
+                      className="single-review__reviewedOn"
+                    >
+                      <p>
+                        a few seconds ago
+                      </p>
+                    </div>
+                  </div>
+                </SingleProductReview>
+              </div>
+              <div
+                className="product-reviews__add"
+              >
+                <AddReview
+                  handleAddSingleReview={[Function]}
+                  productDetails={
+                    Object {
+                      "image": "image.png",
+                      "image_2": "image2.png",
+                      "name": "nigerian",
+                      "product_id": 1,
+                      "subtotal": 455,
+                      "thumbnail": "thumbnail.png",
+                    }
+                  }
+                >
+                  <div
+                    className="add-review__container"
+                  >
+                    <h3>
+                      Add a review
+                    </h3>
+                    <form>
+                      <div
+                        className="add-review__reviewDetails"
+                      >
+                        <label
+                          htmlFor="review"
+                        >
+                          Your review
+                          <div>
+                            <textarea
+                              cols="30"
+                              id="review"
+                              name="review"
+                              onChange={[Function]}
+                              rows="10"
+                            />
+                            <p>
+                              Your review must be at least 50 characters 
+                              <span>
+                                Full review guidelines
+                              </span>
+                            </p>
+                          </div>
+                        </label>
+                      </div>
+                      <div
+                        className="add-review__rating"
+                      >
+                        <label
+                          htmlFor="rating"
+                        >
+                          Overall rating
+                          <div
+                            className="add-review__stars"
+                          >
+                            <img
+                              alt=""
+                              key="0"
+                              name={0}
+                              onClick={[Function]}
+                              src="grey 1.svg"
+                            />
+                            <img
+                              alt=""
+                              key="1"
+                              name={1}
+                              onClick={[Function]}
+                              src="grey 1.svg"
+                            />
+                            <img
+                              alt=""
+                              key="2"
+                              name={2}
+                              onClick={[Function]}
+                              src="grey 1.svg"
+                            />
+                            <img
+                              alt=""
+                              key="3"
+                              name={3}
+                              onClick={[Function]}
+                              src="grey 1.svg"
+                            />
+                            <img
+                              alt=""
+                              key="4"
+                              name={4}
+                              onClick={[Function]}
+                              src="grey 1.svg"
+                            />
+                          </div>
+                        </label>
+                      </div>
+                      <div
+                        className="add-review__submit"
+                      >
+                        <input
+                          onClick={[Function]}
+                          type="submit"
+                          value="Submit"
+                        />
+                      </div>
+                    </form>
+                  </div>
+                </AddReview>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ProductReviews>
+    </section>
+    <footer
+      className="footer"
+    >
+      <Footer>
+        <div
+          className="footer-main"
+        >
+          <div
+            className="footer-container"
+          >
+            <div
+              className="footer-container__categories"
+            >
+              <h3>
+                Women
+              </h3>
+              <h3>
+                Men
+              </h3>
+              <h3>
+                Kids
+              </h3>
+              <h3>
+                Shoes
+              </h3>
+              <h3>
+                Brands
+              </h3>
+            </div>
+            <div
+              className="footer-container__social"
+            >
+              <div
+                className="footer-container__socialIcons"
+              >
+                <img
+                  alt="instagram"
+                  src="instagramIcon.svg"
+                />
+              </div>
+              <div
+                className="footer-container__socialIcons"
+              >
+                <img
+                  alt="pinterest"
+                  src="pinterestIcon.svg"
+                />
+              </div>
+              <div
+                className="footer-container__socialIcons"
+              >
+                <img
+                  alt="twitter"
+                  src="twitterIcon.svg"
+                />
+              </div>
+              <div
+                className="footer-container__socialIcons"
+              >
+                <img
+                  alt="facebook"
+                  src="facebookIcon.svg"
+                />
+              </div>
+            </div>
+            <div
+              className="footer-container__information"
+            >
+              © shopmate Ltd • Contact • Privacy Policy
+            </div>
+          </div>
+        </div>
+      </Footer>
+    </footer>
+  </div>
+</SingleProduct>
+`;

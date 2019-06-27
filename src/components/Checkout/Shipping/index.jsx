@@ -43,6 +43,8 @@ class Shipping extends Component {
     const { shippingCost } = this.props;
 
     const selectedCost = shippingCost.filter((each) => {
+
+      console.log( 'each', each, '======>>> ee', e.currentTarget.value);
       return each.shipping_id === parseInt(e.currentTarget.value);
     });
 

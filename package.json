@@ -27,8 +27,8 @@
   "scripts": {
     "start": "react-scripts --openssl-legacy-provider start",
     "build": "react-scripts --openssl-legacy-provider build",
-    "test": "react-scripts test -u",
-    "test:coverage": "react-scripts test --coverage",
+    "test": "react-scripts --openssl-legacy-provider test -u",
+    "test:coverage": "react-scripts --openssl-legacy-provider test --coverage",
     "eject": "react-scripts eject"
   },
   "jest": {

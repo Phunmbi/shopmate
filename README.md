@@ -2,8 +2,8 @@
 
 
 
-## Shopmate
-An e-commerce desktop frontend implemented on top of turing's e-commerce API
+## Shopmate 
+An e-commerce desktop frontend implemented on top of turing's e-commerce API. [Shopmate](https://shopmate-six.vercel.app/)
 
 ### Features
 - User Sign up and Login

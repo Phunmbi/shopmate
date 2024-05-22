@@ -2,7 +2,6 @@ import React, {Component, Fragment} from 'react';
 import SingleProductReview from './SingleProductReview/index';
 import AddReview from './AddReview/index';
 import './ProductReviews.scss';
-import Loading from "../Loading";
 
 export class ProductReviews extends Component {
   renderSingleProductReview (reviews) {

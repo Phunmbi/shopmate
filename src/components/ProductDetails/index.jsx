@@ -1,5 +1,4 @@
 import React, {Component, Fragment} from 'react';
-import Loading from '../../components/Loading/index';
 import Minus from '../../images/minus.svg'
 import Plus from '../../images/plus.svg'
 import Heart from '../../images/heart.svg';
@@ -57,7 +56,6 @@ class ProductDetails extends Component {
   render() {
     const {
       productDetails,
-      singleProductLoading,
       quantity,
       increaseQuantity,
       reduceQuantity,
